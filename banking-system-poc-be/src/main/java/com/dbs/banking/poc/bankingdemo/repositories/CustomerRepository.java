@@ -1,7 +1,9 @@
 package com.dbs.banking.poc.bankingdemo.repositories;
 
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CustomerRepository extends Repository<Customer, Long> {
+@Repository
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 }
