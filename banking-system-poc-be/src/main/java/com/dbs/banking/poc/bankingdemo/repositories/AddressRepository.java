@@ -1,7 +1,9 @@
 package com.dbs.banking.poc.bankingdemo.repositories;
 
 import com.dbs.banking.poc.bankingdemo.entities.Address;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AddressRepository extends Repository<Address,Long> {
+@Repository
+public interface AddressRepository extends CrudRepository<Address,Long> {
 }
