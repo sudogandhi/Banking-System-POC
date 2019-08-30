@@ -20,4 +20,9 @@ public class Address extends BaseEntity {
     @Column(name = "pincode")
     private String pincode;
 
+    @Column(name = "houseNo")
+    private String houseNo;
+
+    @Column(name = "street")
+    private String street;
 }
