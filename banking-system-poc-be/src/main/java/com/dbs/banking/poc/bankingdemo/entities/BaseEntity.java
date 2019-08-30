@@ -16,6 +16,14 @@ import java.io.Serializable;
 @MappedSuperclass
 @EqualsAndHashCode(of = {"id"})
 public class BaseEntity implements Serializable {
+    public BaseEntity(Long version, DateTime createdAt, DateTime updatedAt) {
+        this.version = version;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public BaseEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
