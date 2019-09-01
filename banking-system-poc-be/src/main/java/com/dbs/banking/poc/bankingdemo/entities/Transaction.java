@@ -13,13 +13,19 @@ import javax.persistence.*;
 @Table(name = "transaction")
 public class Transaction extends BaseEntity {
 
-    @Column(name = "senderId")
-    @NotNull
-    private Long senderId;
+//    @Column(name = "senderId")
+//    @NotNull
+//    private Long senderId;
+//
+//    @Column(name = "receiverId")
+//    @NotNull
+//    private Long receiverId;
 
-    @Column(name = "receiverId")
-    @NotNull
-    private Long receiverId;
+    @ManyToOne
+    private Account sender;
+
+    @ManyToOne
+    private Account receiver;
 
     @Column(name = "amountTransferred")
     @NotNull

@@ -38,13 +38,13 @@ public class Account extends BaseEntity {
     @Column(name = "isActivated", columnDefinition = "boolean default false")
     private boolean isActivated;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "senderId")
-    private Set<Transaction> sentTransactions;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiverId")
-    private Set<Transaction> receivedTransactions;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "senderId")
+//    private Set<Transaction> sentTransactions;
+//
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "receiverId")
+//    private Set<Transaction> receivedTransactions;
 
 
 }
