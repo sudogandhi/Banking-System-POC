@@ -14,8 +14,8 @@ public class Account extends BaseEntity {
     @Column(name = "accountNo", unique = true)
     private long accountNo;
 
-    @Column(name = "customerId")
-    private Long customerId;
+    @Column(name = "userId")
+    private Long userId;
 
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
@@ -24,7 +24,6 @@ public class Account extends BaseEntity {
     private boolean isBlocked;
 
     @Column(name = "branchId")
-    @NotNull
     private Long branchId;
 
     @Column(name = "balance")

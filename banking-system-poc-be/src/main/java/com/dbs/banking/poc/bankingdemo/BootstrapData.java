@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -48,8 +49,7 @@ public class BootstrapData {
             customer.setImages(images);
             customerRepository.save(customer);
         }
-
-
+        createBranch();
     }
 
     public Image getImageObject(String path) {
@@ -72,24 +72,42 @@ public class BootstrapData {
         List<Customer> customers = customerRepository.findAll();
         int i;
 
+        Long n = 1000l;
         for(Customer customer : customers) {
-            for(i = 0 ;i<2;i++) {
-                Account account = new Account();
-                account.setAccountNo(10000000+customer.getId());
-                account.setAccountType(i==0?AccountType.CURRENT:AccountType.SAVING);
+            Set<Account> customerAccounts = customer.getAccounts();
+            if(customerAccounts == null) {
+                customerAccounts = new HashSet<Account>();
             }
-
+            for(i = 0 ;i<4;i++) {
+                Account account = new Account();
+                account.setAccountNo(n++);
+                account.setAccountType(i==0?AccountType.CURRENT:AccountType.SAVING);
+                account.setActivated(true);
+                account.setBalance(5744.99);
+                account.setBlocked(false);
+                Branch branch = branchRepository.findByIfscCode(""+i);
+                Set<Account> accounts = branch.getAccounts();
+                if(accounts == null) {
+                    accounts = new HashSet<Account>();
+                }
+                accounts.add(account);
+                branch.setAccounts(accounts);
+                branchRepository.save(branch);
+                customerAccounts.add(account);
+            }
+            customer.setAccounts(customerAccounts);
+            customerRepository.save(customer);
         }
     }
 
-    public Branch getBranch(String i) {
-        Branch branch = branchRepository.findByIfscCode(i);
-        if(branch == null) {
-            branch = new Branch();
-            branch.setBranchName("branch name"+i);
-            branch.setIfscCode(i);
-            branch.setAddress(this.getAddressObject("branch address"+i));
+    public void createBranch() {
+        for(int i = 0;i<4;i++) {
+            Branch branch = new Branch();
+            branch.setAddress(this.getAddressObject("branch address "+i));
+            branch.setIfscCode(""+i);
+            branch.setBranchName("branch name "+i);
+            branchRepository.save(branch);
         }
-        return branch;
+        createAccount();
     }
 }
