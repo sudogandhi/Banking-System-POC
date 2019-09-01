@@ -3,9 +3,9 @@ package com.dbs.banking.poc.bankingdemo.entities;
 import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -55,7 +55,7 @@ public class User extends BaseEntity {
         this.images = images;
     }
 
-    public User(Long version, DateTime createdAt, DateTime updatedAt) {
+    public User(Long version, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(version, createdAt, updatedAt);
     }
 

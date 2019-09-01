@@ -4,19 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @MappedSuperclass
 @EqualsAndHashCode(of = {"id"})
+@EntityListeners({AuditingEntityListener.class})
 public class BaseEntity implements Serializable {
-    public BaseEntity(Long version, DateTime createdAt, DateTime updatedAt) {
+    public BaseEntity(Long version, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.version = version;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -36,15 +38,17 @@ public class BaseEntity implements Serializable {
     @JsonIgnore
     private Long version;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable=false)
     @JsonIgnore
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @CreatedDate
-    private DateTime createdAt;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @JsonIgnore
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @LastModifiedDate
-    private DateTime updatedAt;
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @UpdateTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
 }

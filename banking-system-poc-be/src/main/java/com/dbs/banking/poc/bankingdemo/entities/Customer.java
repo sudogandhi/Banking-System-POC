@@ -2,9 +2,9 @@ package com.dbs.banking.poc.bankingdemo.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -42,7 +42,7 @@ public class Customer extends  User{
         super(username, firstName, lastName, email, password, mobileNo, address, images);
     }
 
-    public Customer(Long version, DateTime createdAt, DateTime updatedAt) {
+    public Customer(Long version, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(version, createdAt, updatedAt);
     }
 
