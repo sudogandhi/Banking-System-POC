@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo;
 
 import com.dbs.banking.poc.bankingdemo.entities.*;
+import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class BootstrapData {
 
     @Autowired
     BranchRepository branchRepository;
+
+    @Autowired
+    AccountRepository accountRepository;
 
     public void createCustomer() {
 
@@ -74,10 +78,10 @@ public class BootstrapData {
 
         Long n = 1000l;
         for(Customer customer : customers) {
-            Set<Account> customerAccounts = customer.getAccounts();
-            if(customerAccounts == null) {
-                customerAccounts = new HashSet<Account>();
-            }
+//            Set<Account> customerAccounts = customer.getAccounts();
+//            if(customerAccounts == null) {
+//                customerAccounts = new HashSet<Account>();
+//            }
             for(i = 0 ;i<4;i++) {
                 Account account = new Account();
                 account.setAccountNo(n++);
@@ -86,17 +90,21 @@ public class BootstrapData {
                 account.setBalance(5744.99);
                 account.setBlocked(false);
                 Branch branch = branchRepository.findByIfscCode(""+i);
-                Set<Account> accounts = branch.getAccounts();
-                if(accounts == null) {
-                    accounts = new HashSet<Account>();
-                }
-                accounts.add(account);
-                branch.setAccounts(accounts);
-                branchRepository.save(branch);
-                customerAccounts.add(account);
+                account.setBranch(branch);
+                account.setCustomer(customer);
+
+                accountRepository.save(account);
+//                Set<Account> accounts = branch.getAccounts();
+//                if(accounts == null) {
+//                    accounts = new HashSet<Account>();
+//                }
+//                accounts.add(account);
+//                branch.setAccounts(accounts);
+//                branchRepository.save(branch);
+//                customerAccounts.add(account);
             }
-            customer.setAccounts(customerAccounts);
-            customerRepository.save(customer);
+//            customer.setAccounts(customerAccounts);
+//            customerRepository.save(customer);
         }
     }
 
