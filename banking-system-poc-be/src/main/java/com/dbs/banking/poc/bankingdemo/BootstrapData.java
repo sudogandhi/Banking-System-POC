@@ -1,14 +1,13 @@
 package com.dbs.banking.poc.bankingdemo;
 
-import com.dbs.banking.poc.bankingdemo.entities.Address;
-import com.dbs.banking.poc.bankingdemo.entities.Customer;
-import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
-import com.dbs.banking.poc.bankingdemo.entities.Image;
+import com.dbs.banking.poc.bankingdemo.entities.*;
+import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -16,6 +15,9 @@ public class BootstrapData {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    BranchRepository branchRepository;
 
     public void createCustomer() {
 
@@ -64,5 +66,30 @@ public class BootstrapData {
         address.setState("state "+add);
         address.setStreet("street" + add);
         return address;
+    }
+
+    public void createAccount() {
+        List<Customer> customers = customerRepository.findAll();
+        int i;
+
+        for(Customer customer : customers) {
+            for(i = 0 ;i<2;i++) {
+                Account account = new Account();
+                account.setAccountNo(10000000+customer.getId());
+                account.setAccountType(i==0?AccountType.CURRENT:AccountType.SAVING);
+            }
+
+        }
+    }
+
+    public Branch getBranch(String i) {
+        Branch branch = branchRepository.findByIfscCode(i);
+        if(branch == null) {
+            branch = new Branch();
+            branch.setBranchName("branch name"+i);
+            branch.setIfscCode(i);
+            branch.setAddress(this.getAddressObject("branch address"+i));
+        }
+        return branch;
     }
 }

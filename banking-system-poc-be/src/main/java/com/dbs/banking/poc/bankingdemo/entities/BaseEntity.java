@@ -45,7 +45,7 @@ public class BaseEntity implements Serializable {
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "updated_at")
     @JsonIgnore
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @UpdateTimestamp

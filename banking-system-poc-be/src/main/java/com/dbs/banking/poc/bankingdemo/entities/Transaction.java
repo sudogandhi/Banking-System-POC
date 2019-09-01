@@ -3,11 +3,13 @@ package com.dbs.banking.poc.bankingdemo.entities;
 import com.sun.istack.internal.NotNull;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "transaction")
 public class Transaction extends BaseEntity {
 
