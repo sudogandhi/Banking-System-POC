@@ -3,21 +3,29 @@ package com.dbs.banking.poc.bankingdemo.entities;
 import com.sun.istack.internal.NotNull;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "transaction")
 public class Transaction extends BaseEntity {
 
-    @Column(name = "senderId")
-    @NotNull
-    private Long senderId;
+//    @Column(name = "senderId")
+//    @NotNull
+//    private Long senderId;
+//
+//    @Column(name = "receiverId")
+//    @NotNull
+//    private Long receiverId;
 
-    @Column(name = "receiverId")
-    @NotNull
-    private Long receiverId;
+    @ManyToOne
+    private Account sender;
+
+    @ManyToOne
+    private Account receiver;
 
     @Column(name = "amountTransferred")
     @NotNull
