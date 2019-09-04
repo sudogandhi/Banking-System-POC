@@ -1,12 +1,12 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
