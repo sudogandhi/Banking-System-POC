@@ -37,12 +37,19 @@ public class User extends BaseEntity {
     @NotNull
     private Long mobileNo;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private Set<Image> images;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles;
+
+    @ManyToOne
+    Role role;
 
     public User(String username, String firstName, String lastName, String email, String password, Long mobileNo, Address address, Set<Image> images) {
         this.username = username;
@@ -60,5 +67,9 @@ public class User extends BaseEntity {
     }
 
     public User() {
+    }
+
+    public User(User user) {
+
     }
 }

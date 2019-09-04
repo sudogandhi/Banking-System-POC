@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
+@ToString
 @Table(name = "address")
 public class Address extends BaseEntity {
 

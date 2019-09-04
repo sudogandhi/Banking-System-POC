@@ -4,6 +4,7 @@ import com.dbs.banking.poc.bankingdemo.entities.*;
 import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
+import com.dbs.banking.poc.bankingdemo.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,20 @@ public class BootstrapData {
     @Autowired
     AccountRepository accountRepository;
 
-    public void createCustomer() {
+    @Autowired
+    RoleRepository roleRepository;
 
+    public void createRoles() {
+        Role role = new Role("CUSTOMER");
+        Role role1 = new Role("ADMIN");
+
+        roleRepository.save(role);
+        roleRepository.save(role1);
+    }
+
+    public void createCustomer() {
+        this.createRoles();
+        Role role = roleRepository.findByRole("CUSTOMER");
         int i;
         for(i=0;i<20;i++) {
             Customer customer = new Customer();
@@ -39,6 +52,7 @@ public class BootstrapData {
             customer.setMobileNo(1234456778l);
             customer.setAdharCard("adhar"+i);
             customer.setPanCard("PANCARD"+i);
+            customer.setRole(role);
             Image adharImage = getImageObject("AdharCard"+i);
             customer.setAdharCardImage(adharImage);
             Image displayImage = getImageObject("Display"+i);
