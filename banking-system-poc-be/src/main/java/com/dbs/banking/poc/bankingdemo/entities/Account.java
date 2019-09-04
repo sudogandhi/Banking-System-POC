@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "account")
+@ToString
 public class Account extends BaseEntity {
 
     @Column(name = "accountNo", unique = true)

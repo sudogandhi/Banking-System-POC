@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "branch")
+@ToString
 public class Branch extends BaseEntity {
 
     @Column(name = "branchName")

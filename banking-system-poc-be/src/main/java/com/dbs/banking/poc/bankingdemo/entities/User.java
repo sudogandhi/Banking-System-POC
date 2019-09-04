@@ -3,6 +3,7 @@ package com.dbs.banking.poc.bankingdemo.entities;
 import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Data
 @MappedSuperclass
 @EqualsAndHashCode(of = "id")
+@ToString
 public class User extends BaseEntity {
 
     @Column(name = "username")

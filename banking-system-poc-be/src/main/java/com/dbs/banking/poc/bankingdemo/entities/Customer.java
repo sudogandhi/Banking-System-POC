@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Data
 @Table(name = "customer")
 @EqualsAndHashCode(callSuper = false)
+@ToString
 public class Customer extends  User{
 
     @Enumerated(EnumType.STRING)
@@ -22,15 +24,15 @@ public class Customer extends  User{
     @Column(name = "panCard")
     private String panCard;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "displayImage", referencedColumnName = "id")
     private Image displayImage;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "panCardImage", referencedColumnName = "id")
     private Image panCardImage;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "adharCardImage", referencedColumnName = "id")
     private Image adharCardImage;
 

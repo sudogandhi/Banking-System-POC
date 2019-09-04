@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EqualsAndHashCode(of = {"id"})
 @EntityListeners({AuditingEntityListener.class})
+@ToString
 public class BaseEntity implements Serializable {
     public BaseEntity(Long version, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.version = version;
