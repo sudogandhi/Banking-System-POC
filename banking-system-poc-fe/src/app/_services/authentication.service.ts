@@ -30,9 +30,7 @@ export class AuthenticationService {
     let headers = new HttpHeaders({
       Authorization: basicAuthHeaderString
     });
-    return this.http.get(`http://localhost:8089/getAllCustomers`, {headers}).subscribe((response) => {
-      console.log(response);
-    });
+    return this.http.get(`http://localhost:8089/getAllCustomers`).subscribe();
   }
 
   createBasicAuthHttpHeader() {
