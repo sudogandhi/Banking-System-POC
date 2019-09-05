@@ -17,11 +17,22 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+const appRoutes: Routes=[
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        AppRoutingModule,
+        RouterModule.forRoot(
+          appRoutes,
+          {enableTracing:true}),
+        NgxPaginationModule,//add here
         routing
     ],
     declarations: [
@@ -29,6 +40,8 @@ import { RegisterComponent } from './register';
         AlertComponent,
         HomeComponent,
         LoginComponent,
+        AccountDetailComponent,
+        AccountTransactionComponent,
         RegisterComponent
     ],
     providers: [
