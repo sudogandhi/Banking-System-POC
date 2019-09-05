@@ -31,7 +31,12 @@ export class AuthenticationService {
     let headers = new HttpHeaders({
       Authorization: basicAuthHeaderString
     });
-    return this.http.get<AuthenticationBean>(`http://localhost:8089/basicauth`, {headers}).subscribe();
+    console.log(this.http.get<AuthenticationBean>(`http://localhost:8089/basicauth`, {headers}).subscribe());
+    this.http.get(`http://localhost:8089/getAllCustomers`,{headers}).subscribe(
+      (response: Response) => {
+        console.log(response);
+      }
+    );
   }
 }
 
