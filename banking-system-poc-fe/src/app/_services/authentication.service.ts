@@ -7,7 +7,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  login(username: string, password: string) {
+   login(username: string, password: string) {
     return this.http.post<any>(`/users/authenticate`, {username: username, password: password})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
@@ -25,19 +25,16 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  getCustomers() {
-    let basicAuthHeaderString = this.createBasicAuthHttpHeader();
+  executeAuthenticationService(username, password) {
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    console.log(basicAuthHeaderString);
     let headers = new HttpHeaders({
       Authorization: basicAuthHeaderString
     });
-    return this.http.get(`http://localhost:8089/getAllCustomers`).subscribe();
+    return this.http.get<AuthenticationBean>(`http://localhost:8089/basicauth`, {headers}).subscribe();
   }
+}
 
-  createBasicAuthHttpHeader() {
-    let username = 'user';
-    let password = 'password';
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    console.log(basicAuthHeaderString);
-    return basicAuthHeaderString;
-  }
+export class AuthenticationBean {
+  constructor(public message: string) {}
 }
