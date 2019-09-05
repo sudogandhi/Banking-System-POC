@@ -1,0 +1,24 @@
+#transaction {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+#transaction td{
+border: 1px solid #ddd;
+padding: 8px;
+text-align: center;
+}
+#transaction tr:nth-child(even){background-color: #f2f2f2; text-align: center;}
+#transaction tr:hover {background-color: #ddd;   text-align: center;}
+#transaction th{
+padding-top: 12px;
+padding-bottom: 12px;
+background-color: rgb(76, 139, 175);
+color: white;
+text-align: center;
+}
+#pagination{
+position:absolute;
+bottom:0;
+left:550px;
+}
