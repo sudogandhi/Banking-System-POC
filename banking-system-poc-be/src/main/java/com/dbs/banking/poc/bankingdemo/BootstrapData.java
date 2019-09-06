@@ -1,11 +1,10 @@
 package com.dbs.banking.poc.bankingdemo;
 
 import com.dbs.banking.poc.bankingdemo.entities.*;
-import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
-import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
-import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
-import com.dbs.banking.poc.bankingdemo.repositories.RoleRepository;
+import com.dbs.banking.poc.bankingdemo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -28,6 +27,12 @@ public class BootstrapData {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    LoginRepository loginRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public void createRoles() {
         Role role = new Role("CUSTOMER");
         Role role1 = new Role("ADMIN");
@@ -42,17 +47,24 @@ public class BootstrapData {
         int i;
         for(i=0;i<20;i++) {
             Customer customer = new Customer();
+            Login login = new Login();
 
             customer.setFirstName("fname"+i);
             customer.setLastName("lname"+i);
             customer.setUsername("username"+i);
-            customer.setPassword("password"+i);
+            login.setUsername("username"+i);
+
+            String password = passwordEncoder.encode("password"+i);
+            customer.setPassword(password);
+            login.setPassword(password);
+
+            login.setRole(role);
             customer.setCustomerStatus(i%2==0? CustomerStatus.APRROVED:CustomerStatus.REVIEW);
             customer.setEmail("email"+i+"@email.com");
             customer.setMobileNo(1234456778l);
             customer.setAdharCard("adhar"+i);
             customer.setPanCard("PANCARD"+i);
-            customer.setRole(role);
+//            customer.setRole(role);
             Image adharImage = getImageObject("AdharCard"+i);
             customer.setAdharCardImage(adharImage);
             Image displayImage = getImageObject("Display"+i);
@@ -66,6 +78,7 @@ public class BootstrapData {
             images.add(panCardImage);
             customer.setImages(images);
             customerRepository.save(customer);
+            loginRepository.save(login);
         }
         createBranch();
     }
