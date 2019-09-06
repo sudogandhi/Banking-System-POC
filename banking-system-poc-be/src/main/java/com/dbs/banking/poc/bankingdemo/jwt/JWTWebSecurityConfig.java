@@ -90,6 +90,10 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .and()
                 .ignoring()
+                .antMatchers(HttpMethod.POST,
+                "/helloWorld")
+                .and()
+                .ignoring()
                 .antMatchers("/h2-console/**/**");//Should not be in Production!
     }
 }
