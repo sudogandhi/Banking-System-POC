@@ -21,17 +21,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component'; // <-- import the module
 const appRoutes: Routes=[
+  {
+    path:"account_details",
+    component: AccountDetailComponent
+  }
+];
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
-        RouterModule.forRoot(
-          appRoutes,
-          {enableTracing:true}),
+        RouterModule.forRoot(appRoutes,{enableTracing:true}),
         NgxPaginationModule,//add here
         routing
     ],
@@ -42,7 +47,9 @@ const appRoutes: Routes=[
         LoginComponent,
         AccountDetailComponent,
         AccountTransactionComponent,
-        RegisterComponent
+        RegisterComponent,
+        DashboardComponent,
+        NavbarDemoComponent
     ],
     providers: [
         AuthGuard,
