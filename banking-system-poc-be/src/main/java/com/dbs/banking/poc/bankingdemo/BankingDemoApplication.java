@@ -1,13 +1,16 @@
 package com.dbs.banking.poc.bankingdemo;
 
-import org.springframework.boot.SpringApplication;
+import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import static org.springframework.boot.SpringApplication.*;
 
 @SpringBootApplication
 public class BankingDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BankingDemoApplication.class, args);
+        run(BankingDemoApplication.class, args);
     }
 
 }
