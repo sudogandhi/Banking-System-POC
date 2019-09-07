@@ -59,7 +59,7 @@ const appRoutes: Routes=[
         UserService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicService, multi: true}    
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicService, multi: true},
 
         // provider used to create fake backend
         fakeBackendProvider
