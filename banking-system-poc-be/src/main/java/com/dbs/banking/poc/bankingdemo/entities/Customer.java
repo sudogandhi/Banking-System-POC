@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -36,9 +37,8 @@ public class Customer extends  User{
     @JoinColumn(name = "adharCardImage", referencedColumnName = "id")
     private Image adharCardImage;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "userId")
-//    private Set<Account> accounts;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Account> accounts = new HashSet<Account>();
 
     public Customer(String username, String firstName, String lastName, String email, String password, Long mobileNo, Address address, Set<Image> images) {
         super(username, firstName, lastName, email, password, mobileNo, address, images);
