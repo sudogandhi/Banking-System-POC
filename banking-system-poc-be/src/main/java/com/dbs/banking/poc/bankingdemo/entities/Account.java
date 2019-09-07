@@ -40,13 +40,21 @@ public class Account extends BaseEntity {
     @Column(name = "isActivated", columnDefinition = "boolean default false")
     private boolean isActivated;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "senderId")
-//    private Set<Transaction> sentTransactions;
-//
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "receiverId")
-//    private Set<Transaction> receivedTransactions;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "sender")
+    @JoinTable(name="sent_transactions",
+            joinColumns={@JoinColumn(name="account_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="transaction_id", referencedColumnName="id")})
+    private Set<Transaction> sentTransactions;
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "receiver")
+
+    @JoinTable(name="received_transactions",
+            joinColumns={@JoinColumn(name="account_id", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="transaction_id", referencedColumnName="id")})
+    private Set<Transaction> receivedTransactions;
 
 
 }
