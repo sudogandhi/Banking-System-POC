@@ -1,13 +1,13 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule }    from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
 
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
@@ -21,20 +21,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
-const appRoutes: Routes=[
+import {NgxPaginationModule} from 'ngx-pagination';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component';
+import { GenerateStatementComponent } from './generate-statement/generate-statement.component'; // <-- import the module
+const appRoutes: Routes = [
+  {
+    path: 'account_details',
+    component: AccountDetailComponent
+  },
+  {
+    path: 'generate_statement',
+    component: GenerateStatementComponent
+  }
+];
 @NgModule({
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        RouterModule.forRoot(
-          appRoutes,
-          {enableTracing:true}),
-        NgxPaginationModule,//add here
-        routing
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: true}),
+    NgxPaginationModule, // add here
+    routing,
+    FormsModule
+  ],
     declarations: [
         AppComponent,
         AlertComponent,
@@ -42,7 +55,10 @@ const appRoutes: Routes=[
         LoginComponent,
         AccountDetailComponent,
         AccountTransactionComponent,
-        RegisterComponent
+        RegisterComponent,
+        DashboardComponent,
+        NavbarDemoComponent,
+        GenerateStatementComponent
     ],
     providers: [
         AuthGuard,

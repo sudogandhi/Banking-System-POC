@@ -1,0 +1,79 @@
+<script src="generate-statement.component.ts"></script>
+<div class="container">
+<div class="row">
+  <div class="col-2">
+    <br>
+    <select class="browser-default custom-select custom-select-lg mb-4" size="1" (change)="selectAccountType($event)">
+      <option selected>Select Type</option>
+      <option value="savings">Savings</option>
+      <option value="current">Current</option>
+      <option value="salary">Salary</option>
+    </select>
+
+  </div>
+
+  <div class="col-2" >
+    <br>
+
+    <select class="browser-default custom-select custom-select-lg mb-4" size="1" (change)="selectDateRange($event)">
+      <option selected>Select Period</option>
+      <option value="monthly">Monthly</option>
+      <option value="daterange">Date Range</option>
+    </select>
+  </div>
+
+  <div class="col-2" id="monthSelect" style="display: none">
+    <br>
+      <select class="browser-default custom-select custom-select-lg mb-4" size="1" [(ngModel)]="nameOfMonth" (change)="monthName($event)">
+        <option *ngFor="let mon of month" id="mon" value="{{mon}}">{{mon}}</option>
+      </select>
+  </div>
+
+  <div class="col-4"  id="comDate" style="display: none;">
+    <div class="row">
+      <div class="col-6">
+        <div>
+          <label>From:</label>
+          <input type="date" [(ngModel)]="from" id="fromDate" class="form-control" >
+        </div>
+        </div>
+        <div class="col-6">
+          <div>
+            <label>To:</label>
+            <input id="toDate" [(ngModel)]="to" type="date" class="form-control">
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="col-2">
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="getStatements()">SUBMIT</button>
+  </div>
+</div>
+  <br>
+  <br>
+  <br>
+  <div class="row" style="display: none" id="tableId" >
+    <table border="2" class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Transaction Id</th>
+        <th scope="col">Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stmt of statement;index as i">
+        <th scope="col">{{i+1}}</th>
+        <td>{{stmt.accountNo }}}</td>
+        <td>{{ stmt.transactionId }}</td>
+        <td>{{ stmt.outDate }}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
