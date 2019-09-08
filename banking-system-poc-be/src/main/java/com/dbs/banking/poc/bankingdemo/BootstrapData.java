@@ -43,7 +43,7 @@ public class BootstrapData {
 
     public void createCustomer() {
         this.createRoles();
-        Role role = roleRepository.findByRole("CUSTOMER");
+        Role role = roleRepository.findByRole("CUSTOMER").orElse(new Role("CUSTOMER"));
         int i;
         for(i=0;i<20;i++) {
             Customer customer = new Customer();

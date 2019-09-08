@@ -35,7 +35,7 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 //        }
 //
 //        return findFirst.get();
-        Login login = loginRepository.findByUsername(username);
+        Login login = loginRepository.findByUsername(username).orElse(null);
 
         if (login == null) {
             throw new UsernameNotFoundException(String.format("USER_NOT_FOUND '%s'.", username));

@@ -1,7 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
 public enum CustomerStatus {
-    REVIEW("REVIEW"), APRROVED("APPROVED"), REJECTED("REJECTED");
+    REVIEW("REVIEW"), APRROVED("APPROVED"), REJECTED("REJECTED"),NEW("NEW");
 
     private final String status;
 
