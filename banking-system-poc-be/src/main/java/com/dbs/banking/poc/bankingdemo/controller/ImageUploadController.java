@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.controller;
 
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
+import com.dbs.banking.poc.bankingdemo.email.EmailServiceImpl;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.ImageType;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
@@ -31,6 +32,9 @@ public class ImageUploadController {
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    EmailServiceImpl emailService;
+
     @RequestMapping("/getAllCustomers")
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
@@ -51,6 +55,7 @@ public class ImageUploadController {
         }
         else {
             imageService.uploadImage(file,ImageType.ADHAR);
+            emailService.sendSimpleMessage("gauravgo4friends@gmail.com","Test","Adhar is downloaded.");
             return new ResponseDTO("success",HttpStatus.OK);
         }
     }
