@@ -4,14 +4,18 @@ import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Image;
 import com.dbs.banking.poc.bankingdemo.entities.ImageType;
+import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import com.dbs.banking.poc.bankingdemo.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -75,5 +79,22 @@ public class CustomerController {
             imageService.uploadImage(file, ImageType.DISPLAY);
             return new ResponseDTO("success",HttpStatus.OK);
         }
+    }
+
+    @GetMapping(value = "/adhar")
+    ResponseEntity<Resource> downloadAdhar() throws UserNotExistsException, FileNotFoundException {
+        return imageService.downloadImage(ImageType.ADHAR);
+    }
+
+
+    @GetMapping(value = "/pan")
+    ResponseEntity<Resource> downloadPan() throws UserNotExistsException, FileNotFoundException {
+        return imageService.downloadImage(ImageType.PAN);
+    }
+
+
+    @GetMapping(value = "/display")
+    ResponseEntity<Resource> downloadDisplayImage() throws UserNotExistsException, FileNotFoundException {
+        return imageService.downloadImage(ImageType.DISPLAY);
     }
 }

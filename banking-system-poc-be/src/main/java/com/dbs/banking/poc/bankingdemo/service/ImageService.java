@@ -9,6 +9,10 @@ import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,15 +59,15 @@ public class ImageService {
         Customer customer = customerService.getLoggedInCustomer();
 
         switch (imageType.ordinal()) {
-            case 1: {
+            case 0: {
                 customer.setAdharCardImage(image);
                 break;
             }
-            case 2: {
+            case 1: {
                 customer.setPanCardImage(image);
                 break;
             }
-            case 3: {
+            case 2: {
                 customer.setDisplayImage(image);
                 break;
             }
@@ -80,5 +84,33 @@ public class ImageService {
     public String getImageType(MultipartFile file) {
         String contentType = file.getContentType();
         return "."+contentType.substring(contentType.indexOf("/")+1);
+    }
+
+    public ResponseEntity<Resource> downloadImage(ImageType imageType) throws UserNotExistsException, FileNotFoundException {
+        Customer customer = customerService.getLoggedInCustomer();
+        Image image = null;
+        switch (imageType.ordinal()) {
+            case 0: {
+                image = customer.getAdharCardImage();
+                break;
+            }
+            case 1: {
+                image = customer.getPanCardImage();
+                break;
+            }
+            case 2: {
+                image = customer.getDisplayImage();
+                break;
+            }
+        }
+
+        if(image == null) {
+            throw new FileNotFoundException();
+        }
+
+        File file = new File(image.getImagePath());
+        Resource fileSystemResource = new FileSystemResource(file);
+
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(fileSystemResource);
     }
 }
