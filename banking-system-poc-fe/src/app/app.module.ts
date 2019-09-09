@@ -24,7 +24,8 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component'; // <-- import the module
+import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component';
+import { AddEmpComponent } from './add-emp/add-emp.component'; // <-- import the module
 const appRoutes: Routes=[
   {
     path:"account_details",
@@ -50,7 +51,8 @@ const appRoutes: Routes=[
         AccountTransactionComponent,
         RegisterComponent,
         DashboardComponent,
-        NavbarDemoComponent
+        NavbarDemoComponent,
+        AddEmpComponent
     ],
     providers: [
         AuthGuard,
