@@ -2,7 +2,6 @@ package com.dbs.banking.poc.bankingdemo.controller;
 
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
-import com.dbs.banking.poc.bankingdemo.entities.Image;
 import com.dbs.banking.poc.bankingdemo.entities.ImageType;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
@@ -20,7 +19,8 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class CustomerController {
+@RequestMapping("/upload")
+public class ImageUploadController {
 
     @Autowired
     CustomerRepository customerRepository;
@@ -81,20 +81,5 @@ public class CustomerController {
         }
     }
 
-    @GetMapping(value = "/adhar")
-    ResponseEntity<Resource> downloadAdhar() throws UserNotExistsException, FileNotFoundException {
-        return imageService.downloadImage(ImageType.ADHAR);
-    }
 
-
-    @GetMapping(value = "/pan")
-    ResponseEntity<Resource> downloadPan() throws UserNotExistsException, FileNotFoundException {
-        return imageService.downloadImage(ImageType.PAN);
-    }
-
-
-    @GetMapping(value = "/display")
-    ResponseEntity<Resource> downloadDisplayImage() throws UserNotExistsException, FileNotFoundException {
-        return imageService.downloadImage(ImageType.DISPLAY);
-    }
 }

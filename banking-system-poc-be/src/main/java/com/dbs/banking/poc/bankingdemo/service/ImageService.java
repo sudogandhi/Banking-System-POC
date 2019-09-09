@@ -4,7 +4,6 @@ import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Image;
 import com.dbs.banking.poc.bankingdemo.entities.ImageType;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
-import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -86,8 +84,11 @@ public class ImageService {
         return "."+contentType.substring(contentType.indexOf("/")+1);
     }
 
-    public ResponseEntity<Resource> downloadImage(ImageType imageType) throws UserNotExistsException, FileNotFoundException {
-        Customer customer = customerService.getLoggedInCustomer();
+    public ResponseEntity<Resource> downloadImage(ImageType imageType, String username) throws UserNotExistsException, FileNotFoundException {
+        Customer customer = customerRepository.findByUsername(username).orElse(null);
+        if(customer == null) {
+            throw new UserNotExistsException("Username not found.");
+        }
         Image image = null;
         switch (imageType.ordinal()) {
             case 0: {
