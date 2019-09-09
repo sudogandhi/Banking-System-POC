@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Image;
+import com.dbs.banking.poc.bankingdemo.entities.ImageType;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
@@ -39,29 +40,11 @@ public class ImageService {
         }
     }
 
-    public void uploadImage(MultipartFile file,Integer typeChoice) throws IOException, UserNotExistsException {
+    public void uploadImage(MultipartFile file, ImageType imageType) throws IOException, UserNotExistsException {
         isDirectoryPresent();
-        String typeOfImage = "";
 
-        switch (typeChoice) {
-            case 1: {
-                typeOfImage = "/adhar";
-                break;
-            }
-            case 2: {
-                typeOfImage = "/pan";
-                break;
-            }
-            case 3: {
-                typeOfImage = "/dp";
-                break;
-            }
-            default: {
-                throw new FileNotFoundException("Type of Image not found.");
-            }
-        }
 
-        String imagePath = uploadDirectoryPath + typeOfImage  + (System.currentTimeMillis())+getImageType(file);
+        String imagePath = uploadDirectoryPath + imageType.name()  + (System.currentTimeMillis())+getImageType(file);
         File localFile = new File(imagePath);
 
         InputStream inputStream = file.getInputStream();
@@ -71,7 +54,7 @@ public class ImageService {
         image.setImagePath(imagePath);
         Customer customer = customerService.getLoggedInCustomer();
 
-        switch (typeChoice) {
+        switch (imageType.ordinal()) {
             case 1: {
                 customer.setAdharCardImage(image);
                 break;

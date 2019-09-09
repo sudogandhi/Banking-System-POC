@@ -3,6 +3,7 @@ package com.dbs.banking.poc.bankingdemo.controller;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Image;
+import com.dbs.banking.poc.bankingdemo.entities.ImageType;
 import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import com.dbs.banking.poc.bankingdemo.service.ImageService;
@@ -39,13 +40,39 @@ public class CustomerController {
 
     @RequestMapping(value = "/adhar",method = { RequestMethod.POST, RequestMethod.PUT },
             consumes = { "multipart/form-data","image/jpeg","image/png" })
-    ResponseDTO write(@RequestParam("file") MultipartFile file) throws Exception {
+    ResponseDTO uploadAdharCard(@RequestParam("file") MultipartFile file) throws Exception {
         System.out.println(file);
         if(file == null) {
             return new ResponseDTO("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         else {
-            imageService.uploadImage(file,1);
+            imageService.uploadImage(file,ImageType.ADHAR);
+            return new ResponseDTO("success",HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/pan",method = { RequestMethod.POST, RequestMethod.PUT },
+            consumes = { "multipart/form-data","image/jpeg","image/png" })
+    ResponseDTO uploadPanCard(@RequestParam("file") MultipartFile file) throws Exception {
+        System.out.println(file);
+        if(file == null) {
+            return new ResponseDTO("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        else {
+            imageService.uploadImage(file,ImageType.PAN);
+            return new ResponseDTO("success",HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/display",method = { RequestMethod.POST, RequestMethod.PUT },
+            consumes = { "multipart/form-data","image/jpeg","image/png" })
+    ResponseDTO uploadDisplayImage(@RequestParam("file") MultipartFile file) throws Exception {
+        System.out.println(file);
+        if(file == null) {
+            return new ResponseDTO("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        else {
+            imageService.uploadImage(file, ImageType.DISPLAY);
             return new ResponseDTO("success",HttpStatus.OK);
         }
     }
