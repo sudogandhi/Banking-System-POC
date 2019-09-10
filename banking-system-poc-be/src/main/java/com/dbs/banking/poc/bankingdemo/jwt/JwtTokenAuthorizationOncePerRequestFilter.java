@@ -1,5 +1,6 @@
 package com.dbs.banking.poc.bankingdemo.jwt;
 
+import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,10 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
     @Value("${jwt.http.request.header}")
     private String tokenHeader;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    private String loggedInUsername;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         logger.debug("Authentication Request For '{}'", request.getRequestURL());
@@ -44,6 +49,7 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
             jwtToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+                loggedInUsername = username;
             } catch (IllegalArgumentException e) {
                 logger.error("JWT_TOKEN_UNABLE_TO_GET_USERNAME", e);
             } catch (ExpiredJwtException e) {
@@ -66,5 +72,9 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
         }
 
         chain.doFilter(request, response);
+    }
+
+    public String getLoggedInUsername() {
+        return loggedInUsername;
     }
 }
