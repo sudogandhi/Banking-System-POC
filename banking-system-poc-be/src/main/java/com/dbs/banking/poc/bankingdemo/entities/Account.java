@@ -13,7 +13,8 @@ import java.util.Set;
 @ToString
 public class Account extends BaseEntity {
 
-    @Column(name = "accountNo", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "accountNo", unique = true )
     private long accountNo;
 
 //    @Column(name = "userId")
