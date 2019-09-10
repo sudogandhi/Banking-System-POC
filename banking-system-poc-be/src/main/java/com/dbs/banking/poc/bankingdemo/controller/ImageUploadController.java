@@ -35,10 +35,6 @@ public class ImageUploadController {
     @Autowired
     EmailServiceImpl emailService;
 
-    @RequestMapping("/getAllCustomers")
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
 
     @PostMapping("/helloWorld1")
     public String helloWorld() {
