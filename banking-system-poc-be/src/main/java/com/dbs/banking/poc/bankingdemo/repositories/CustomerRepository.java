@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.repositories;
 
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
+import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findAll();
 
     Optional<Customer> findByEmail(String email);
+
+    List<Customer> findByCustomerStatus(CustomerStatus customerStatus);
 }

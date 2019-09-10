@@ -1,7 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
 public enum CustomerStatus {
-    APRROVED("APPROVED"),NEW("NEW");
+    APPROVED("APPROVED"),NEW("NEW");
 
     private final String status;
 
