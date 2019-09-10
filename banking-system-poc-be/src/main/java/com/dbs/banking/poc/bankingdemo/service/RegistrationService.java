@@ -113,7 +113,7 @@ public class RegistrationService {
 
     @Transactional
     public void requestForgetPassword(String username) throws UserNotExistsException {
-        String tokenString = UUID.randomUUID().toString();
+        String tokenString = UUID.randomUUID().toString().substring(0,10);
 
         Token token = new Token();
         Login login = loginRepository.findByUsername(username).orElse(null);
@@ -124,14 +124,14 @@ public class RegistrationService {
         }
         else if("CUSTOMER".equals(login.getRole().getRole())) {
 
-            token.setToken(tokenString);
-            token.setLogin(login);
+            customer.setPassword(encoder.encode(tokenString));
+            login.setPassword(encoder.encode(tokenString));
 
-            tokenRepository.deleteAllByLogin(login);
-            tokenRepository.save(token);
-
-            String emailBody = "http://localhost:8089/resetPassword/"+tokenString+"\n" +
-                    "Please click on the above link to reset your password.";
+            customerRepository.save(customer);
+            loginRepository.save(login);
+            String emailBody = "Hi "+customer.getFirstName() + " " + customer.getLastName() + "" +
+                    " your new password is "+tokenString+"\n" +
+                    "Please change the password after logging in with this password.";
             String emailSubject = "Hi "+login.getUsername()+" reset password.";
             emailService.sendSimpleMessage(customer.getEmail(),emailSubject,emailBody);
         }
