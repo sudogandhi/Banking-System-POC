@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -98,6 +99,9 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .ignoring()
                 .antMatchers(HttpMethod.POST,"/requestForgetPassword")
+                .and()
+                .ignoring()
+                .antMatchers(HttpMethod.GET,"/activation/**")
                 .and()
                 .ignoring()
                 .antMatchers("/h2-console/**/**");//Should not be in Production!

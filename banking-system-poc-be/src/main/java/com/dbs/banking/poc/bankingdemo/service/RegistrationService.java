@@ -3,6 +3,7 @@ package com.dbs.banking.poc.bankingdemo.service;
 import com.dbs.banking.poc.bankingdemo.co.RegistrationCO;
 import com.dbs.banking.poc.bankingdemo.email.EmailServiceImpl;
 import com.dbs.banking.poc.bankingdemo.entities.*;
+import com.dbs.banking.poc.bankingdemo.exceptions.TokenExpiredException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserAlreadyExistsException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
@@ -76,7 +77,16 @@ public class RegistrationService {
         customerRepository.save(customer);
         loginRepository.save(login);
 
-        return "User created successfully.";
+        String tokenString = UUID.randomUUID().toString();
+        Token token = new Token();
+        token.setToken(tokenString);
+        token.setLogin(login);
+
+        String activateUrlMessage = "http://localhost:8089/activation/"+tokenString+"\n" +
+                "Click on the above link to activate your account";
+        emailService.sendSimpleMessage(customer.getEmail(),"Activate link for DBS Account",activateUrlMessage);
+        tokenRepository.save(token);
+        return "User created successfully.\nPlease check your email for account verification.";
     }
 
     public boolean usernameExists(String username) {
@@ -134,6 +144,25 @@ public class RegistrationService {
                     "Please change the password after logging in with this password.";
             String emailSubject = "Hi "+login.getUsername()+" reset password.";
             emailService.sendSimpleMessage(customer.getEmail(),emailSubject,emailBody);
+        }
+    }
+
+    @Transactional
+    public void activateUser(String tokenString) throws TokenExpiredException, UserNotExistsException {
+        Token token = tokenRepository.findByToken(tokenString).orElse(null);
+        if(token == null) {
+            throw new TokenExpiredException("This token is expired.");
+        }
+        else{
+            Customer customer = customerRepository.findByUsername(token.getLogin().getUsername()).orElse(null);
+            if(customer == null) {
+                throw new UserNotExistsException("User not found");
+            }
+            else {
+                customer.setCustomerStatus(CustomerStatus.APRROVED);
+                customerRepository.save(customer);
+                tokenRepository.delete(token);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.exceptionHandler;
 
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
+import com.dbs.banking.poc.bankingdemo.exceptions.TokenExpiredException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,5 +23,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     @ExceptionHandler(BranchNotFoundException.class)
     public final ResponseDTO handleBranchNotFoundException(BranchNotFoundException ex, WebRequest request) {
         return new ResponseDTO(ex.getMessage(),HttpStatus.NO_CONTENT);
+    }
+
+    @ExceptionHandler(TokenExpiredException.class)
+    public final ResponseDTO handleTokenExpiredException(TokenExpiredException ex,WebRequest request) {
+        return new ResponseDTO(ex.getMessage(),HttpStatus.FORBIDDEN);
     }
 }
