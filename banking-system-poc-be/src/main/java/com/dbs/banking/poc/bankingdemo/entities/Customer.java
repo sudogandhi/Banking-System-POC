@@ -1,8 +1,6 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +12,8 @@ import java.util.Set;
 @Table(name = "customer")
 @EqualsAndHashCode(callSuper = false)
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer extends  User{
 
     @Enumerated(EnumType.STRING)
@@ -40,14 +40,9 @@ public class Customer extends  User{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<Account>();
 
-    public Customer(String username, String firstName, String lastName, String email, String password, Long mobileNo, Address address, Set<Image> images) {
-        super(username, firstName, lastName, email, password, mobileNo, address, images);
-    }
 
     public Customer(Long version, LocalDateTime createdAt, LocalDateTime updatedAt) {
         super(version, createdAt, updatedAt);
     }
 
-    public Customer() {
-    }
 }
