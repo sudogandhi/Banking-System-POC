@@ -1,12 +1,11 @@
 package com.dbs.banking.poc.bankingdemo.controller;
 
-import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.service.AdminService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -15,8 +14,9 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping("/listCustomers")
-    public ResponseDTO fetchCustomers(@RequestHeader("Status") String customerStatus) {
-        return adminService.fetchCustomers(customerStatus);
+    @GetMapping(value = "/listCustomers/{page}",produces =MediaType.APPLICATION_JSON_VALUE)
+    public String fetchCustomers(@RequestHeader("Status") String customerStatus, @PathVariable("page")Integer page) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(adminService.fetchCustomers(customerStatus, page));
     }
 }

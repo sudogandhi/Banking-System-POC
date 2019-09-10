@@ -159,7 +159,7 @@ public class RegistrationService {
                 throw new UserNotExistsException("User not found");
             }
             else {
-                customer.setCustomerStatus(CustomerStatus.APRROVED);
+                customer.setCustomerStatus(CustomerStatus.APPROVED);
                 customerRepository.save(customer);
                 tokenRepository.delete(token);
             }

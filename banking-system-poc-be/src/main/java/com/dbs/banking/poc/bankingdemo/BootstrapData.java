@@ -59,7 +59,7 @@ public class BootstrapData {
             login.setPassword(password);
 
             login.setRole(role);
-            customer.setCustomerStatus(i%2==0? CustomerStatus.APRROVED:CustomerStatus.NEW);
+            customer.setCustomerStatus(i%2==0? CustomerStatus.APPROVED:CustomerStatus.NEW);
             customer.setEmail("email"+i+"@email.com");
             customer.setMobileNo(1234456778l);
             customer.setAdharCard("adhar"+i);
