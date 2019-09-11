@@ -4,6 +4,7 @@ import com.dbs.banking.poc.bankingdemo.validations.annontations.Mobile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class RegistrationCO {
 
     @NotNull
@@ -33,15 +35,10 @@ public class RegistrationCO {
     @Mobile
     String mobileNo;
 
-    @Override
-    public String toString() {
-        return "RegistrationCO{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", mobileNo='" + mobileNo + '\'' +
-                '}';
-    }
+    @NotNull
+    String panCard;
+
+    @NotNull
+    String adharCard;
+
 }
