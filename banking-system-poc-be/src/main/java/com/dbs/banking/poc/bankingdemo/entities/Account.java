@@ -56,5 +56,11 @@ public class Account extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "transaction_id", referencedColumnName = "id")})
     private Set<Transaction> receivedTransactions;
 
+    public boolean getIsActivated() {
+        return this.isActivated;
+    }
 
+    public boolean getIsBlocked() {
+        return this.isBlocked;
+    }
 }
