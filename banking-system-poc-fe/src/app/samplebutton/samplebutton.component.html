@@ -1,0 +1,256 @@
+
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    
+
+</style>
+     
+</head>
+<body>
+    
+        <mat-tab-group>
+                <mat-tab label="Home">
+                    <div style="text-align:right; width:100%; padding:0;">
+                        <button type="button" class="btn btn-primary" value="Click" (click) ="logout()">
+                                LOGOUT
+                         </button>       
+                    </div>
+                    <br>
+                    <br>
+                            <div class="container">
+                                        <div class="centered a"><h1 style="color:white;">DBS BANK</h1> 
+                                        <h1 style="color:white;">WELCOME TO ADMIN PANEL</h1></div>
+                                        <img src="assets/Bank.jpg" width="1200px" height="500px">
+                            </div>
+                            
+                </mat-tab>
+                <mat-tab label="Manage Customers">
+                        <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animals">Customers List</button>
+                        <mat-menu #animals="matMenu">
+                                <div class="a">
+                                <button mybutton1 mat-button (click)="show0 = ! show0">New Customers</button>
+                               </div> 
+                              
+                        </mat-menu>          
+               
+                        <div *ngIf="show0" class="a"> 
+                                <div class="container">
+                                    <h2><b>New Customers List</b></h2>
+                                        <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>name</th>
+                                                <th>address</th>
+                                                <th>profile</th>
+                                                <!-- <th>status</th> -->
+                                                <!-- <th>Adhar Number</th>
+                                                <th>Mobile Number</th>
+                                                <th>Status</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let data of  customerData">
+                                                    <td>{{data.name}}</td>
+                                                    <td>{{data.address}}</td>
+                                                    <td>{{data.profile}}</td>
+                                                    <!-- <td>
+                                                            <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
+                                                             {{toggleBtn.checked}}
+                                                             </mat-button-toggle> 
+                                                             <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
+                                                    </td> -->
+                                            </tr>
+                                             <!-- <tr>
+                                                <td>John</td>
+                                                <td>Doe</td>
+                                                <td>john@example.com</td>
+                                                <td>90909090909090</td>
+                                                <td>9169098769</td>
+                                                <td>
+                                                <mat-slide-toggle
+                                                dragChange="valueChange()">
+                                                </mat-slide-toggle>
+                                                 
+                                                </td>  
+                                                     </tr>
+                                            <tr>
+                                                <td>John</td>
+                                                <td>Doe</td>
+                                                <td>john@example.com</td>
+                                                <td>90909090909090</td>
+                                                <td>9169098769</td>
+                                                <td>
+                                                <mat-button-toggle #toggleBtn2 checked>Toggle</mat-button-toggle>   
+                                                 {{toggleBtn2.checked}}
+                                               </td> 
+                                            </tr>
+                                            <tr> 
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                        <td>90909090909090</td>
+                                                        <td>9169098769</td>
+                                                        <td>
+                                                        <mat-button-toggle #toggleBtn1 checked>Toggle</mat-button-toggle>   
+                                                         {{toggleBtn1.checked}}
+                                                        </td> 
+                                                    </tr>  -->
+                                            </tbody>
+                                        </table>
+                                </div>
+                        </div>
+               </mat-tab>
+                <mat-tab label="Manage Accounts">
+                        <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animals1">Options</button>
+                        <mat-menu #animals1="matMenu">
+                                <div class="b">
+                                <button  mat-button (click)=show1()>New Account Requests</button>
+                               </div> 
+                               <div class="b">
+                                <button mat-button (click)="show2()">Blocked Account Requests</button>
+                                 </div> 
+                                 <div class="b">
+                                        <button mat-button (click)="show3()">All Accounts</button>
+                                </div>
+                              
+                        </mat-menu>   
+                        <div *ngIf="showvar1" class="b"> 
+                                        <div class="container">
+                                                <h2><b>New Account Requests</b></h2>
+                                                <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Firstname</th>
+                                                        <th>Lastname</th>
+                                                        <th>Email</th>
+                                                        <th>Adhar Number</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                        <td>90909090909090</td>
+                                                        <td>9169098769</td>
+                                                        <td>
+                                                        <mat-button-toggle #toggleBtn1 checked>Approved</mat-button-toggle>   
+                                                         {{toggleBtn1.checked}}
+                                                        </td> 
+                                                    </tr>
+                                                    <tr>
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                        <td>90909090909090</td>
+                                                        <td>9169098769</td>
+                                                        <td>
+                                                        <mat-button-toggle #toggleBtn2 checked>Toggle</mat-button-toggle>   
+                                                         {{toggleBtn2.checked}}
+                                                       </td> 
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </div>
+                                
+                                <div *ngIf="showvar2" class="b"> 
+                                                <div class="container">
+                                                        <h2><b>Blocked Account Requests</b></h2>
+                                                        <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Firstname</th>
+                                                                <th>Lastname</th>
+                                                                <th>Email</th>
+                                                                <th>Adhar Number</th>
+                                                                <th>Mobile Number</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>John</td>
+                                                                <td>Doe</td>
+                                                                <td>john@example.com</td>
+                                                                <td>90909090909090</td>
+                                                                <td>9169098769</td>
+                                                                <td>
+                                                                <mat-button-toggle #toggleBtn1 checked>Toggle</mat-button-toggle>   
+                                                                 {{toggleBtn1.checked}}
+                                                                </td> 
+                                                            </tr>
+                                                            <tr>
+                                                                <td>John</td>
+                                                                <td>Doe</td>
+                                                                <td>john@example.com</td>
+                                                                <td>90909090909090</td>
+                                                                <td>9169098769</td>
+                                                                <td>
+                                                                <mat-button-toggle #toggleBtn2 checked>Toggle</mat-button-toggle>   
+                                                                 {{toggleBtn2.checked}}
+                                                               </td> 
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                </div>
+                                        </div>
+                                
+                                <div *ngIf="showvar3" class="b"> 
+                                        <div class="container">
+                                                <h2><b>All Accounts</b></h2>
+                                                <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Firstname</th>
+                                                        <th>Lastname</th>
+                                                        <th>Email</th>
+                                                        <th>Adhar Number</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                        <td>90909090909090</td>
+                                                        <td>9169098769</td>
+                                                        <td>
+                                                        <mat-button-toggle #toggleBtn1 checked>Toggle</mat-button-toggle>   
+                                                         {{toggleBtn1.checked}}
+                                                        </td> 
+                                                    </tr>
+                                                    <tr>
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                        <td>90909090909090</td>
+                                                        <td>9169098769</td>
+                                                        <td>
+                                                        <mat-button-toggle #toggleBtn2 checked>Toggle</mat-button-toggle>   
+                                                         {{toggleBtn2.checked}}
+                                                       </td> 
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </div>
+                </mat-tab>  
+                
+        </mat-tab-group>
+         
+</body>
+</html>
+
+

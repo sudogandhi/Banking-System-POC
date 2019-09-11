@@ -2,6 +2,17 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { CommonModule } from '@angular/common';  
+import { SamplebuttonComponent } from './samplebutton/samplebutton.component';
+import { MaterialModule } from './material/material.module';
+
+import {FormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 // used to create fake backend
 import {fakeBackendProvider} from './_helpers';
@@ -25,7 +36,7 @@ import { AccountTransactionComponent } from './account-transaction/account-trans
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component';
-import { AddEmpComponent } from './add-emp/add-emp.component'; // <-- import the module
+// import { AddEmpComponent } from './add-emp/add-emp.component'; // <-- import the module
 const appRoutes: Routes=[
   {
     path:"account_details",
@@ -40,7 +51,14 @@ const appRoutes: Routes=[
         AppRoutingModule,
         RouterModule.forRoot(appRoutes,{enableTracing:true}),
         NgxPaginationModule,//add here
-        routing
+        routing,
+        MaterialModule,
+         BrowserAnimationsModule,
+    FormsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+       
+   
     ],
     declarations: [
         AppComponent,
@@ -52,7 +70,8 @@ const appRoutes: Routes=[
         RegisterComponent,
         DashboardComponent,
         NavbarDemoComponent,
-        AddEmpComponent
+        // AddEmpComponent,
+        SamplebuttonComponent
     ],
     providers: [
         AuthGuard,
