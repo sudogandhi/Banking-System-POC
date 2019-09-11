@@ -57,7 +57,7 @@ public class TransactionService{
         transaction.setSenderOldBalance(senderAccount.getBalance());
 
         transaction.setReceiverNewBalance(receiverAccount.getBalance()+sendMoneyCO.getAmount());
-        transaction.setSenderOldBalance(receiverAccount.getBalance()-sendMoneyCO.getAmount());
+        transaction.setSenderNewBalance(senderAccount.getBalance()-sendMoneyCO.getAmount());
         transaction.setChecked(false);
 
         senderAccount.setBalance(senderAccount.getBalance()-sendMoneyCO.getAmount());
