@@ -1,6 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
+import com.dbs.banking.poc.bankingdemo.co.BalanceCO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.entities.AccountType;
 import com.dbs.banking.poc.bankingdemo.entities.Branch;
@@ -65,5 +66,9 @@ public class AccountService {
 
         Customer customer=customerService.getLoggedInCustomer();
         return accountRepository.getAccountsNumber(customer);
+    }
+
+    public Double getBalance(BalanceCO balanceCO) {
+        return accountRepository.findBalanceById(balanceCO.getAccountNo());
     }
 }

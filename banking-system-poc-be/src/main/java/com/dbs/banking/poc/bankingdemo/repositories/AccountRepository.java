@@ -18,4 +18,7 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     @Query("SELECT a.id from Account a where a.customer = ?1")
     List<Long> getAccountsNumber(Customer customer);
+
+    @Query("SELECT a.balance from Account a where a.accountNo = ?1")
+    Double findBalanceById(Long accountNo);
 }
