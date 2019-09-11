@@ -1,35 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header" style="display: inline">
-      <img
-        src="https://www.tronweekly.com/wp-content/uploads/2019/08/Ripple-gets-the-leg-up-in-mass-adoption-race-as-DBS-Bank-includes-it-in-the-official-release-TWJ.png"
-        style="width: 70px">
+
+<nav class="navbar navbar-expand-sm bg-">
+
+  <a class="navbar-brand" href="#">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJU8LQlBJ_EjexDL5Mf5Kz6UgfVCbWNbQpFg1GrkEiYRJRcsT" alt="Logo" style="width:70px;">
+  </a>
+  <div>
+  <ul class="navbar-nav " routerLinkActive="active">
+    <li class="nav-item">
+      <a class="nav-link text-white h6" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link  text-white h6" routerLink="/account_details">Account Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/generate_statement">Generate Statement</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/money_transfer">Money Transfer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/request_account">Request new Account</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/edit_profile">Edit Profile</a>
+    </li>
+    <li class="nac-item">
+      <button class="nav-link btn btn-outline-light" type="submit">Logout</button>
+    </li>
+  </ul>
     </div>
-    <ul class="navbar-nav mr-auto" style="display: inline">
-
-      <li class="nav-item "><a href="#" style="color: white">Home</a></li>
-      <li class="nav-item "><a routerLink="request_account" style="color: white">Request Account</a></li>
-      <li class="nav-item "><a routerLink="account_details" style="color: white">Account_Details</a></li>
-      <li class="nav-item "><a routerLink="generate_statement" style="color: white">Generate_Statement</a></li>
-      <li class="nav-item "><a routerLink="money_transfer" style="color: white">Money_Transfer</a></li>
-      <li class="nav-item "><a routerLink="edit_profile" style="color: white">Edit_Profile</a></li>
-    </ul>
-  </div>
 </nav>
-</div>
-</body>
-</html>
 <router-outlet></router-outlet>
-

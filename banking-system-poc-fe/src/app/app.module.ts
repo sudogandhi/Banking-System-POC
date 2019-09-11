@@ -4,20 +4,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+// import { fakeBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
-import { routing } from './app.routing';
+//import { routing } from './app.routing';
 
-import { AlertComponent } from './_directives';
-import { AuthGuard } from './_guards';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService } from './_services';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
+// import { AlertComponent } from './_directives';
+// import { AuthGuard } from './_guards';
+// import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+// import { AlertService, AuthenticationService, UserService } from './_services';
 
-import { AppRoutingModule } from './app-routing.module';
+// import { LoginComponent } from './login';
+
+// import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
@@ -31,26 +30,15 @@ import {MatButtonModule, MatInputModule, MatNativeDateModule, MatSelectModule, M
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
 import { RequestAccountComponent } from './request-account/request-account.component';
-//import {MatInputModule} from '@angular/material/typings/esm5/input';
-// <-- import the module
-const appRoutes: Routes = [
-  {
-    path: 'account_details',
-    component: AccountDetailComponent
-  },
-  {
-    path: 'generate_statement',
-    component: GenerateStatementComponent
-  },
-  {
-    path: 'money_transfer',
-    component: MoneyTransferComponent
-  },
-  {
-    path:'request_account',
-    component: RequestAccountComponent
-  }
-];
+import { HomeComponent } from './home/home.component'; // <-- import the module
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginRegistrationPageComponent } from './login-registration-page/login-registration-page.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { LoginService } from './login/login.service';
+import { NewUserEntryService } from './register/new-user-entry.service';
+import { AppRoutingModule } from './app-routing.module';
+const appRoutes: Routes = [];
 @NgModule({
   imports: [
     BrowserModule,
@@ -59,9 +47,8 @@ const appRoutes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true}),
+      {enableTracing: false}),
     NgxPaginationModule, // add here
-    routing,
     FormsModule,
     MatSelectModule,
     BrowserAnimationsModule,
@@ -74,28 +61,22 @@ const appRoutes: Routes = [
   ],
     declarations: [
         AppComponent,
-        AlertComponent,
-        HomeComponent,
-        LoginComponent,
         AccountDetailComponent,
         AccountTransactionComponent,
-        RegisterComponent,
         DashboardComponent,
         NavbarDemoComponent,
         GenerateStatementComponent,
         MoneyTransferComponent,
-        RequestAccountComponent
+        RequestAccountComponent,
+        EditProfileComponent,
+        LoginRegistrationPageComponent,
+        LoginComponent,
+        RegisterComponent,
+        HomeComponent
     ],
     providers: [
-        AuthGuard,
-        AlertService,
-        AuthenticationService,
-        UserService,
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend
-        fakeBackendProvider
+        LoginService,
+        NewUserEntryService
     ],
     bootstrap: [AppComponent]
 })
