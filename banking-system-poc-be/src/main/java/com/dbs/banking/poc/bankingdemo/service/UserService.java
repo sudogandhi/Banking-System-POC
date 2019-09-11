@@ -3,6 +3,7 @@ package com.dbs.banking.poc.bankingdemo.service;
 import com.dbs.banking.poc.bankingdemo.co.UserCO;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
+import com.dbs.banking.poc.bankingdemo.entities.User;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,5 @@ public class UserService {
 
         return "User updated successfully.";
     }
+
 }
