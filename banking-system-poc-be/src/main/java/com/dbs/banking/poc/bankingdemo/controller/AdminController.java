@@ -19,4 +19,10 @@ public class AdminController {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(adminService.fetchCustomers(customerStatus, page));
     }
+
+    @GetMapping(value = "/listAccounts/{page}",produces =MediaType.APPLICATION_JSON_VALUE)
+    public String fetchAccounts(@RequestHeader("Status") String accountStatus, @PathVariable("page")Integer page) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(adminService.fetchAccounts(accountStatus, page));
+    }
 }

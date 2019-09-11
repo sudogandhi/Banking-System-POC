@@ -1,8 +1,10 @@
 package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.dto.CustomerDTO;
+import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
+import com.dbs.banking.poc.bankingdemo.repositories.AccountPagenationRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.LoginRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.RoleRepository;
@@ -30,6 +32,9 @@ public class AdminService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AccountPagenationRepository accountPagenationRepository;
 
     public String fetchCustomers(String customerStatus, Integer page) {
         List<Customer> customerList = null;
@@ -69,5 +74,32 @@ public class AdminService {
         }
         System.out.println(customerDTOList);
         return customerDTOList;
+    }
+
+    public List<Account> fetchAccounts(String accountStatus, Integer page) {
+        List<Account> accountList = null;
+        Page<Account> accountPage = null;
+        PageRequest pageRequest = new PageRequest(page,5,new Sort(Sort.Direction.ASC,"id"));
+        if("ALL".equalsIgnoreCase(accountStatus)) {
+            accountPage = accountPagenationRepository.findAll(pageRequest);
+        }
+        else if ("ACTIVATED".equalsIgnoreCase(accountStatus)) {
+            accountPage = accountPagenationRepository.findByIsActivated(true,pageRequest);
+        }
+        else if("DEACTIVATED".equalsIgnoreCase(accountStatus)) {
+            accountPage = accountPagenationRepository.findByIsActivated(false,pageRequest);
+        }
+        else if("BLOCKED".equalsIgnoreCase(accountStatus)) {
+            accountPage = accountPagenationRepository.findByIsBlocked(true,pageRequest);
+        }
+        else if("UNBLOCKED".equalsIgnoreCase(accountStatus)) {
+            accountPage = accountPagenationRepository.findByIsBlocked(false,pageRequest);
+        }
+
+
+        if(accountPage!= null && accountPage.hasContent()) {
+            accountList = accountPage.getContent();
+        }
+        return accountList;
     }
 }
