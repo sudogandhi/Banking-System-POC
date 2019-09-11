@@ -13,12 +13,15 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     List<Account> findAllByCustomer(Customer customer);
 
-    @Query("SELECT a.id from Account a")
+    @Query("SELECT a.accountNo from Account a")
     List<Long> getAllAccountsNumber();
 
-    @Query("SELECT a.id from Account a where a.customer = ?1")
+    @Query("SELECT a.accountNo from Account a where a.customer = ?1")
     List<Long> getAccountsNumber(Customer customer);
 
     @Query("SELECT a.balance from Account a where a.accountNo = ?1")
     Double findBalanceById(Long accountNo);
+
+    @Query("SELECT MAX(a.accountNo)+1 from Account a")
+    Long nextAccountNo();
 }

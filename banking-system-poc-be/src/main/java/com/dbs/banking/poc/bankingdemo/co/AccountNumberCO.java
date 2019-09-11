@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BalanceCO {
+public class AccountNumberCO {
     @NotNull
     Long accountNo;
 }

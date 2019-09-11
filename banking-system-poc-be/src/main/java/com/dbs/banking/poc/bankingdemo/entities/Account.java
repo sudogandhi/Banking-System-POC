@@ -14,7 +14,7 @@ import java.util.Set;
 public class Account extends BaseEntity {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "accountNo", unique = true )
+    @Column(name = "accountNo", unique = true)
     private long accountNo;
 
 //    @Column(name = "userId")

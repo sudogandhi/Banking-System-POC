@@ -1,7 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.controller;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
-import com.dbs.banking.poc.bankingdemo.co.BalanceCO;
+import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
@@ -50,8 +50,16 @@ public class AccountController {
     }
 
     @PostMapping(value="/getBalance")
-    public Double getBalance(@RequestBody @Valid BalanceCO balanceCO){
-        Double balance =  accountService.getBalance(balanceCO);
+    public Double getBalance(@RequestBody @Valid AccountNumberCO accountNumberCO){
+        Double balance =  accountService.getBalance(accountNumberCO);
         return balance;
     }
+
+//    @PostMapping(value="/approveAccount")
+//    public Double approveAccount(@RequestBody @Valid AccountNumberCO accountNumberCO){
+//        Double balance =  accountService.getBalance(accountNumberCO);
+//        return balance;
+//    }
+
+
 }

@@ -1,7 +1,7 @@
 package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
-import com.dbs.banking.poc.bankingdemo.co.BalanceCO;
+import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.entities.AccountType;
 import com.dbs.banking.poc.bankingdemo.entities.Branch;
@@ -43,9 +43,10 @@ public class AccountService {
         account.setCustomer(customerService.getLoggedInCustomer());
         account.setBalance(0.0);
         account.setBranch(branch);
-        account.setActivated(false);
+        account.setActivated(true);
         account.setBlocked(false);
-        //account.setAccountNo(12345);
+        account.setBalance((double) 50000);
+        account.setAccountNo(accountRepository.nextAccountNo());
         accountRepository.save(account);
 
         return "Account Created";
@@ -68,7 +69,7 @@ public class AccountService {
         return accountRepository.getAccountsNumber(customer);
     }
 
-    public Double getBalance(BalanceCO balanceCO) {
-        return accountRepository.findBalanceById(balanceCO.getAccountNo());
+    public Double getBalance(AccountNumberCO accountNumberCO) {
+        return accountRepository.findBalanceById(accountNumberCO.getAccountNo());
     }
 }
