@@ -1,29 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: #4C8BAF">
-  <a class="navbar-brand">
-    <img
-    width="40"
-    alt="Angular Logo" class="d-inline-block"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />XYZ</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" style="display: inline">
+      <img
+        src="https://www.tronweekly.com/wp-content/uploads/2019/08/Ripple-gets-the-leg-up-in-mass-adoption-race-as-DBS-Bank-includes-it-in-the-official-release-TWJ.png"
+        style="width: 70px">
+    </div>
+    <ul class="navbar-nav mr-auto" style="display: inline">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="account_details">Account Details</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="generate_statement">Generate Statement</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Money Transfer</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Edit Profile</a>
-      </li>
+      <li class="nav-item "><a href="#" style="color: white">Home</a></li>
+      <li class="nav-item "><a routerLink="request_account" style="color: white">Request Account</a></li>
+      <li class="nav-item "><a routerLink="account_details" style="color: white">Account_Details</a></li>
+      <li class="nav-item "><a routerLink="generate_statement" style="color: white">Generate_Statement</a></li>
+      <li class="nav-item "><a routerLink="money_transfer" style="color: white">Money_Transfer</a></li>
+      <li class="nav-item "><a routerLink="edit_profile" style="color: white">Edit_Profile</a></li>
     </ul>
   </div>
 </nav>
+</div>
+</body>
+</html>
 <router-outlet></router-outlet>
+

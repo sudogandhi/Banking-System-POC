@@ -24,7 +24,15 @@ import { AccountTransactionComponent } from './account-transaction/account-trans
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarDemoComponent } from './navbar-demo/navbar-demo.component';
-import { GenerateStatementComponent } from './generate-statement/generate-statement.component'; // <-- import the module
+import { GenerateStatementComponent } from './generate-statement/generate-statement.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/typings/esm5/form-field';
+import {MatButtonModule, MatInputModule, MatNativeDateModule, MatSelectModule, MatTableModule, MatTabsModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
+import { RequestAccountComponent } from './request-account/request-account.component';
+//import {MatInputModule} from '@angular/material/typings/esm5/input';
+// <-- import the module
 const appRoutes: Routes = [
   {
     path: 'account_details',
@@ -33,6 +41,14 @@ const appRoutes: Routes = [
   {
     path: 'generate_statement',
     component: GenerateStatementComponent
+  },
+  {
+    path: 'money_transfer',
+    component: MoneyTransferComponent
+  },
+  {
+    path:'request_account',
+    component: RequestAccountComponent
   }
 ];
 @NgModule({
@@ -46,7 +62,15 @@ const appRoutes: Routes = [
       {enableTracing: true}),
     NgxPaginationModule, // add here
     routing,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatInputModule,
+    MatTabsModule
   ],
     declarations: [
         AppComponent,
@@ -58,7 +82,9 @@ const appRoutes: Routes = [
         RegisterComponent,
         DashboardComponent,
         NavbarDemoComponent,
-        GenerateStatementComponent
+        GenerateStatementComponent,
+        MoneyTransferComponent,
+        RequestAccountComponent
     ],
     providers: [
         AuthGuard,
