@@ -22,24 +22,24 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
   executeAuthenticationService(username, password) {
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    console.log(basicAuthHeaderString);
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
-    console.log(this.http.get<AuthenticationBean>(`http://localhost:8089/basicauth`, {headers}).subscribe());
-    this.http.get(`http://localhost:8089/getAllCustomers`,{headers}).subscribe(
-      (response: Response) => {
-        console.log(response);
+  
+    console.log(this.http.post<AuthenticationBean>(`http://localhost:8089/login`, {"username":username, "password":password}).subscribe(
+      (response) => {
+        if(response) {
+          localStorage.setItem('token',response.token);
+        }
       }
-    );
+    ));
   }
 }
 
 export class AuthenticationBean {
-  constructor(public message: string) {}
+  token: string;
+  constructor(token: string) {
+    this.token = token;
+  }
 }
