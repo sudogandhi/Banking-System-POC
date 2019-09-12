@@ -78,7 +78,7 @@ import {appRoutes, routing} from './app.routing';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    RouterModule.forRoot(appRoutes, {enableTracing: false}),
     MatTabsModule,
     MatMenuModule,
     MatButtonToggleModule
