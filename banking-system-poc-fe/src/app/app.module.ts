@@ -58,6 +58,7 @@ import {AuthGuard} from './_guards';
 import {AlertService, UserService} from './_services';
 import {ErrorInterceptor, fakeBackendProvider} from './_helpers';
 import {appRoutes, routing} from './app.routing';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import {appRoutes, routing} from './app.routing';
         NavbarDemoComponent,
         // AddEmpComponent,
         SamplebuttonComponent,
-        HomeComponent
+        HomeComponent,
+        CustomerHomeComponent
     ],
     providers: [
         LoginService,
