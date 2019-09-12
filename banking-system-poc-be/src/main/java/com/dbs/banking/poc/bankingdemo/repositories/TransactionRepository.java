@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction,Integer> {
 
-    @Query("SELECT t from Transaction t where t.sender = ?1 or t.receiver = ?1")
+    @Query("SELECT t from Transaction t where t.sender = ?1 or t.receiver = ?1 order by createdAt DESC")
     List<Transaction> userTransactions(Account account);
 
 }

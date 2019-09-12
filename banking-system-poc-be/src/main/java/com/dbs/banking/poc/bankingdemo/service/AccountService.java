@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -89,6 +90,16 @@ public class AccountService {
 
     public List<Transaction> userTransactions(AccountNumberCO accountNumberCO) throws UserNotExistsException {
         Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
-        return transactionRepository.userTransactions(account);
+        List<Transaction> result = transactionRepository.userTransactions(account);
+        //Collections.reverse(result);
+        return result;
+    }
+
+    public List<Transaction> lastTenTransactions(AccountNumberCO accountNumberCO) {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        List<Transaction> result = transactionRepository.userTransactions(account);
+        //Collections.reverse(result);
+        return result.subList(0,Math.min(10,result.size()-1));
+
     }
 }

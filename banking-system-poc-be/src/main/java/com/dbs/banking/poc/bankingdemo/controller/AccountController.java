@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -65,12 +67,19 @@ public class AccountController {
 
     @GetMapping(value="/allTransactions")
     public List<Transaction> allTransaction(){
-        return accountService.allTransaction();
+        List<Transaction> response= accountService.allTransaction();
+        Collections.reverse(response);
+        return response;
     }
 
     @PostMapping(value="/transactions")
     public List<Transaction> userTransaction(@RequestBody @Valid AccountNumberCO accountNumberCO) throws UserNotExistsException {
         return accountService.userTransactions(accountNumberCO);
+    }
+
+    @PostMapping(value="/lastTenTransactions")
+    public List<Transaction> lastTenTransaction(@RequestBody @Valid AccountNumberCO accountNumberCO) throws UserNotExistsException {
+        return accountService.lastTenTransactions(accountNumberCO);
     }
 
 
