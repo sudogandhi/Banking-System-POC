@@ -72,4 +72,11 @@ public class AccountService {
     public Double getBalance(AccountNumberCO accountNumberCO) {
         return accountRepository.findBalanceById(accountNumberCO.getAccountNo());
     }
+
+    public String activateAccount(AccountNumberCO accountNumberCO) {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        account.setActivated(true);
+        return "Account Activated";
+
+    }
 }
