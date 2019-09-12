@@ -21,8 +21,8 @@ public class CustomerController {
         return customer;
     }
 
-    @PutMapping(value="/addAddress")
-    public String addAddress(AddressCO addressCO) throws UserNotExistsException {
+    @PostMapping(value="/addAddress")
+    public String addAddress(@RequestBody AddressCO addressCO) throws UserNotExistsException {
         Customer customer=customerService.getLoggedInCustomer();
         String response=customerService.addAddress(addressCO,customer);
         return response;

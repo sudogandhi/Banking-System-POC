@@ -38,19 +38,20 @@ public class CustomerService {
 
     }
 
-    @Transactional
+
     public String addAddress(AddressCO addressCO,Customer customer) {
 
-        Address address=new Address();
-        address.setCity(addressCO.getCity());
-        address.setPincode(addressCO.getPincode());
-        address.setHouseNo(addressCO.getHouseNo());
-        address.setState(addressCO.getState());
-        address.setStreet(addressCO.getStreet());
-        addressRepository.save(address);
+        Address address=new Address(addressCO.getCity(),addressCO.getState(),addressCO.getPincode(),addressCO.getHouseNo(),addressCO.getStreet());
+//        address.setCity(addressCO.getCity());
+//        address.setPincode(addressCO.getPincode());
+//        address.setHouseNo(addressCO.getHouseNo());
+//        address.setState(addressCO.getState());
+//        address.setStreet(addressCO.getStreet());
 
         customer.setAddress(address);
+
         customerRepository.save(customer);
+        //addressRepository.save(address);
         return "Address successfully Added";
     }
 }
