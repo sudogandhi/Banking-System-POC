@@ -9,6 +9,7 @@ export class AccountTransactionComponent implements OnInit {
   constructor(private _detail:AccountDataService) { }
   value:any
   header;
+  p:number =1;
 
   getValue(){
     this.value=this._detail.getTransaction()

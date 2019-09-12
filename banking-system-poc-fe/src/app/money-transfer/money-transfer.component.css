@@ -1,0 +1,13 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 60%;
+}
+
+.padding1
+{
+  padding-top : 150px;
+}

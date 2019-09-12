@@ -1,4 +1,4 @@
-
+<app-navbar-demo></app-navbar-demo>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,11 @@
     <title>Transactions</title>
 </head>
 <body>
+<div> 
+    <app-navbar-demo></app-navbar-demo> 
+    <br>
     <h2>Transactions</h2>
+    <div class="padding1">
     <table id="transaction">
             <th *ngFor="let item of header" >
                 <tr>{{item}}</tr>
@@ -24,5 +28,7 @@
     <div class="text-center" id="pagination">
         <pagination-controls (pageChange)="p = $event" ></pagination-controls>
     </div>
+   </div> 
+</div>      
 </body>
 </html>

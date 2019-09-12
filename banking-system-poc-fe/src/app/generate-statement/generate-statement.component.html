@@ -1,0 +1,92 @@
+<div>
+<app-navbar-demo></app-navbar-demo>
+
+<div class="container padding1">
+  <form [formGroup]="statementForm" (ngSubmit)="onFormSubmit()" class="form-inline">
+          <mat-form-field>
+            <mat-label>Select Account Type</mat-label>
+              <mat-select formControlName="accountControl"
+                          [class.is-invalid]="statementForm.get('accountControl').invalid||statementForm.get('accountControl').untouched">
+                <mat-option *ngFor="let acnt of accountType" [value]="acnt.value"  >{{acnt.viewValue}}</mat-option>
+              </mat-select>
+            <mat-error *ngIf="statementForm.get('accountControl').invalid">
+              Choose an account Type
+            </mat-error>
+          </mat-form-field>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <mat-form-field >
+            <mat-label>Select Period</mat-label>
+            <mat-select formControlName="periodControl"
+            [class.is-invalid]="statementForm.get('periodControl').invalid||statementForm.get('periodControl').untouched">
+              <mat-option value="monthly">Monthly</mat-option>
+              <mat-option value="date range">Date Range</mat-option>
+            </mat-select>
+            <mat-error *ngIf="statementForm.get('periodControl').invalid">
+              Choose Period
+            </mat-error>
+          </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <mat-form-field id="month" *ngIf="statementForm.get('periodControl').value==='monthly'">
+            <mat-label>Select Month</mat-label>
+            <mat-select formControlName="mon"
+            [class.is-invalid]="statementForm.get('mon').valid">
+              <mat-option *ngFor="let mon of months" [value]="mon" >{{mon}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+         <div *ngIf="statementForm.get('periodControl').value ==='date range'" >
+          <input matInput [matDatepicker]="picker" placeholder="From Date" formControlName="fromDate"
+          [class.is-invalid]="statementForm.get('fromDate').invalid">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="statementForm.get('fromDate').invalid">
+              Choose Date
+            </mat-error>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+          <div *ngIf="statementForm.get('periodControl').value ==='date range'">
+          <input matInput [matDatepicker]="picker2" placeholder="To Date" formControlName="toDate"
+          [class.is-invalid]="statementForm.get('toDate').invalid">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="statementForm.get('toDate').invalid">
+              Choose Date
+            </mat-error>
+          </div>
+    <button mat-raised-button color="primary" [disabled]="statementForm.valid">SUBMIT</button>
+  </form>
+  <br>
+  <br>
+  <div class="row">
+    <table border="2" class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Txn Date</th>
+          <th scope="col">Txn ID</th>
+          <th scope="col">Withdraw</th>
+          <th scope="col">Deposit</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 3, currentPage: p };">
+          <td> {{t.txnDate}}</td>
+          <td> {{t.txnID}} </td>
+          <td> {{t.withdrawal}}</td>
+          <td>{{t.deposit}}</td>
+          <td>{{t.balance}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center" id="pagination">
+      <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+    </div>
+  </div>
+</div>
+</div>
