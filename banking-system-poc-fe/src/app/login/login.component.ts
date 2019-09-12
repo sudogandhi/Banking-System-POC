@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { LoginService } from './login.service';
+import { CustomerLogin } from './CustomerLogin';
+import { Alert } from 'selenium-webdriver';
+import { Router } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../_services';
-
-@Component({templateUrl: 'login.component.html'})
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) {}
+  //username:string;
+  generated_token:string='';
+  user:CustomerLogin={username:"",password:""};
+  foundRecord:CustomerLogin;
+  constructor(private _service :LoginService,private router : Router) { }
 
-    ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
-        });
+  ngOnInit() 
+  {
+    //this.onFormSubmit();
+  }
 
-        // reset login status
-        this.authenticationService.logout();
+  onFormSubmit()
+  {
+    // let data:CustomerLogin;
+    this._service.findEntry(this.user.username).subscribe(data=>this.foundRecord = data);
+    console.log(this.foundRecord);
+    
+    this._service.getLoginToken(this.user).subscribe(data=>this.generated_token=data);
+    localStorage.setItem("generated_token",this.generated_token);
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -58,4 +61,6 @@ export class LoginComponent implements OnInit {
         //             this.loading = false;
         //         });
     }
+
+  }
 }

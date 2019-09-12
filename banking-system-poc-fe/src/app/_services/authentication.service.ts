@@ -34,6 +34,8 @@ export class AuthenticationService {
         }
       }
     ));
+
+    this.http.get('http://localhost:8089/');
   }
 }
 
