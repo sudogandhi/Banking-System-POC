@@ -13,32 +13,21 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class RegistrationCO {
+public class UserCO {
+    @NotNull
+    String firstName;
 
     @NotNull
-    String firstname;
-
-    @NotNull
-    String lastname;
+    String lastName;
 
     @NotNull
     @Email
     String email;
 
-    @NotNull
-    String username;
+//    @NotNull
+//    String username;
 
     @NotNull
-    String password;
-
-    @NotNull
-    @Mobile
-    String mobileNo;
-
-    @NotNull
-    String panCard;
-
-    @NotNull
-    String adharCard;
+    Long mobileNo;
 
 }

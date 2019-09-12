@@ -1,24 +1,25 @@
 package com.dbs.banking.poc.bankingdemo.service;
-
+import com.dbs.banking.poc.bankingdemo.co.UserCO;
+import com.dbs.banking.poc.bankingdemo.entities.Customer;
+import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
+import com.dbs.banking.poc.bankingdemo.entities.User;
+import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
+import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.dto.UserDetailsDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Address;
-import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Login;
-import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-
 @Service
 public class UserService {
-
     @Autowired
     LoginService loginService;
-
+    @Autowired
+    CustomerRepository customerRepository;
     @Autowired
     CustomerService customerService;
-
     public UserDetailsDTO getLoggedInUserDetails() throws UserNotExistsException {
         UserDetailsDTO userDetailsDTO = new UserDetailsDTO();
 
@@ -44,11 +45,24 @@ public class UserService {
             userDetailsDTO.setUsername(login.getUsername());
             userDetailsDTO.setEmail(customer.getEmail());
 
-            userDetailsDTO.setAdharCard(customer.getAdharCard());
             userDetailsDTO.setPanCard(customer.getPanCard());
+            userDetailsDTO.setAdharCard(customer.getAdharCard());
             userDetailsDTO.setMobile(customer.getMobileNo());
             userDetailsDTO.setCustomerStatus(customer.getCustomerStatus().name());
         }
         return userDetailsDTO;
+    }
+    public String updateUser(UserCO userCO) throws UserNotExistsException {
+        Customer customer=customerService.getLoggedInCustomer();
+
+        //customer.setUsername(userCO.getUsername());
+        customer.setFirstName(userCO.getFirstName());
+        customer.setLastName(userCO.getLastName());
+        customer.setEmail(userCO.getEmail());
+        customer.setMobileNo(userCO.getMobileNo());
+
+        customerRepository.save(customer);
+
+        return "User updated successfully.";
     }
 }

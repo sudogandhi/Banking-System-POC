@@ -1,15 +1,20 @@
 package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
+import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.entities.AccountType;
 import com.dbs.banking.poc.bankingdemo.entities.Branch;
+import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -36,17 +41,35 @@ public class AccountService {
         }
 
         account.setCustomer(customerService.getLoggedInCustomer());
-
         account.setBalance(0.0);
-
         account.setBranch(branch);
-
         account.setActivated(false);
-
         account.setBlocked(false);
-
+        account.setBalance((double) 50000);
+        account.setAccountNo(accountRepository.nextAccountNo());
         accountRepository.save(account);
 
         return "Account Created";
+    }
+
+    public List<Account> getAllAccounts() throws UserNotExistsException {
+
+        Customer customer=customerService.getLoggedInCustomer();
+        return accountRepository.findAllByCustomer(customer);
+    }
+
+    public List<Long> getAllAccountsNumber() throws UserNotExistsException {
+        Customer customer=customerService.getLoggedInCustomer();
+        return accountRepository.getAllAccountsNumber();
+    }
+
+    public List<Long> getAccountsNumber() throws UserNotExistsException {
+
+        Customer customer=customerService.getLoggedInCustomer();
+        return accountRepository.getAccountsNumber(customer);
+    }
+
+    public Double getBalance(AccountNumberCO accountNumberCO) {
+        return accountRepository.findBalanceById(accountNumberCO.getAccountNo());
     }
 }

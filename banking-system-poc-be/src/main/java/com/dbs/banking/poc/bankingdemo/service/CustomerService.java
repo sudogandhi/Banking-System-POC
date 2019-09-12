@@ -1,12 +1,16 @@
 package com.dbs.banking.poc.bankingdemo.service;
 
+import com.dbs.banking.poc.bankingdemo.co.AddressCO;
+import com.dbs.banking.poc.bankingdemo.entities.Address;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.jwt.JwtTokenAuthorizationOncePerRequestFilter;
+import com.dbs.banking.poc.bankingdemo.repositories.AddressRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -17,6 +21,9 @@ public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
 
     public Customer getLoggedInCustomer() throws UserNotExistsException {
@@ -29,5 +36,22 @@ public class CustomerService {
             throw new UserNotExistsException("User doesnot exists.");
         }
 
+    }
+
+
+    public String addAddress(AddressCO addressCO,Customer customer) {
+
+        Address address=new Address(addressCO.getCity(),addressCO.getState(),addressCO.getPincode(),addressCO.getHouseNo(),addressCO.getStreet());
+//        address.setCity(addressCO.getCity());
+//        address.setPincode(addressCO.getPincode());
+//        address.setHouseNo(addressCO.getHouseNo());
+//        address.setState(addressCO.getState());
+//        address.setStreet(addressCO.getStreet());
+
+        customer.setAddress(address);
+
+        customerRepository.save(customer);
+        //addressRepository.save(address);
+        return "Address successfully Added";
     }
 }

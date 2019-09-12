@@ -1,6 +1,8 @@
 package com.dbs.banking.poc.bankingdemo.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 @Entity
 @ToString
 @Table(name = "address")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address extends BaseEntity {
 
     @Column(name  = "city")
@@ -27,4 +31,5 @@ public class Address extends BaseEntity {
 
     @Column(name = "street")
     private String street;
+
 }

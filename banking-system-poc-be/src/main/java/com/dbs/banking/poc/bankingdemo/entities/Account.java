@@ -13,6 +13,7 @@ import java.util.Set;
 @ToString
 public class Account extends BaseEntity {
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "accountNo", unique = true)
     private long accountNo;
 

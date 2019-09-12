@@ -56,6 +56,5 @@ public class User extends BaseEntity {
     }
 
     public User(User user) {
-
     }
 }

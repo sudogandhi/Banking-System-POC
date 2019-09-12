@@ -55,6 +55,7 @@ public class RegistrationService {
             throw new UserAlreadyExistsException("User with the mobile no ["+registrationCO.getMobileNo()+
                     "] already exists");
         }
+
         if(this.userWithEmailExists(registrationCO.getEmail())) {
             throw new UserAlreadyExistsException("User with the email ["+registrationCO.getEmail()+
                     "] already exists");
@@ -72,6 +73,8 @@ public class RegistrationService {
         customer.setLastName(registrationCO.getLastname());
         customer.setMobileNo(Long.parseLong(registrationCO.getMobileNo()));
         customer.setEmail(registrationCO.getEmail());
+        customer.setAdharCard(registrationCO.getAdharCard());
+        customer.setPanCard(registrationCO.getPanCard());
         customer.setCustomerStatus(CustomerStatus.NEW);
 
         customerRepository.save(customer);
