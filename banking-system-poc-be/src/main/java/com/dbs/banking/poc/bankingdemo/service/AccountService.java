@@ -43,7 +43,7 @@ public class AccountService {
         account.setCustomer(customerService.getLoggedInCustomer());
         account.setBalance(0.0);
         account.setBranch(branch);
-        account.setActivated(true);
+        account.setActivated(false);
         account.setBlocked(false);
         account.setBalance((double) 50000);
         account.setAccountNo(accountRepository.nextAccountNo());
