@@ -37,7 +37,12 @@ export class LoginComponent implements OnInit {
         password: new FormControl('',[Validators.required])
       }
     );
-    //this.onFormSubmit();
+    let token = localStorage.getItem('token');
+
+    if(token) {
+      this.router.navigate(['/dashboard']);
+    }
+    // this.onFormSubmit();
   }
 
   onFormSubmit() {
