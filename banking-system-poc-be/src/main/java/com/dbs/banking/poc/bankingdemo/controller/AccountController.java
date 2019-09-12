@@ -4,6 +4,7 @@ import com.dbs.banking.poc.bankingdemo.co.AccountCO;
 import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
+import com.dbs.banking.poc.bankingdemo.entities.Transaction;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
@@ -59,6 +60,11 @@ public class AccountController {
     public String activateAccount(@RequestBody @Valid AccountNumberCO accountNumberCO){
         String response = accountService.activateAccount(accountNumberCO);
         return response;
+    }
+
+    @GetMapping(value="/allTransactions")
+    public List<Transaction> allTransaction(){
+        return accountService.allTransaction();
     }
 
 
