@@ -33,18 +33,18 @@ public class AccountController {
         return new ResponseDTO(response, HttpStatus.CREATED);
     }
 
-    @GetMapping(value="/getAllAccounts")
+    @GetMapping(value="/getAllAccounts")                                   // to get all account details of the logged in customer
     public List<Account> getAllAccounts() throws UserNotExistsException {
 
         return accountService.getAllAccounts();
     }
 
-    @GetMapping(value="/getAllAccountsNumber")
+    @GetMapping(value="/getAllAccountsNumber")                              //to get all accounts number int the bank
     public List<Long> getAllAccountsNumber() throws UserNotExistsException {
         return accountService.getAllAccountsNumber();
     }
 
-    @GetMapping(value="/getAccountsNumber")
+    @GetMapping(value="/getAccountsNumber")                                 // to get all account number of the customer
     public List<Long> getAccountsNumber() throws UserNotExistsException {
         return accountService.getAccountsNumber();
     }
@@ -55,11 +55,11 @@ public class AccountController {
         return balance;
     }
 
-//    @PostMapping(value="/approveAccount")
-//    public Double approveAccount(@RequestBody @Valid AccountNumberCO accountNumberCO){
-//        Double balance =  accountService.getBalance(accountNumberCO);
-//        return balance;
-//    }
+    @PostMapping(value="/activateAccount")
+    public String activateAccount(@RequestBody @Valid AccountNumberCO accountNumberCO){
+        String response = accountService.activateAccount(accountNumberCO);
+        return response;
+    }
 
 
 }
