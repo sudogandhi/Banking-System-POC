@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.dto.CustomerDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
+import com.dbs.banking.poc.bankingdemo.entities.Address;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.CustomerStatus;
 import com.dbs.banking.poc.bankingdemo.repositories.AccountPagenationRepository;
@@ -64,7 +65,10 @@ public class AdminService {
             customerDTO.setUsername(customer.getUsername());
             customerDTO.setEmail(customer.getEmail());
             customerDTO.setMobile(customer.getMobileNo());
-            customerDTO.setAddress(customer.getAddress().toString());
+            Address address = customer.getAddress();
+            if(address != null ) {
+                customerDTO.setAddress(customer.getAddress().toString());
+            }
             customerDTO.setAdharCardNo(customer.getAdharCard());
             customerDTO.setPanCardNo(customer.getPanCard());
             customerDTO.setCustomerStatus(customer.getCustomerStatus().name());

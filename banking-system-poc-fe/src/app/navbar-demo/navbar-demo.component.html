@@ -1,35 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
-  <a class="navbar-brand" href="#">
-    <img
-      width="40"
-      alt="XYZ Logo" class="d-inline-block"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    /> XYZ
 
+<nav class="navbar fixed-top navbar-expand ">
+
+  <a class="navbar-brand"  style="padding-bottom: 30px">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVJU8LQlBJ_EjexDL5Mf5Kz6UgfVCbWNbQpFg1GrkEiYRJRcsT"
+         alt="Logo"
+         style="width:55px;height: 40px;">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="account_details">Account Details <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" routerLink="#">Generate Statement</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Money Transfer</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Edit Profile</a>
-      </li>
-
-    </ul>
-
-  </div>
+  <div>
+  <ul class="navbar-nav " routerLinkActive="active">
+    <li class="nav-item">
+      <a class="nav-link text-white h5" routerLink="/customer_home">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link  text-white h5" routerLink='/account_details'>Account Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h5" routerLink="/generate_statement">Generate Statement</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/money_transfer">Money Transfer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/request_account">Request new Account</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white h6" routerLink="/edit_profile">Edit Profile</a>
+    </li>
+    <li class="nav-item" style="padding-top: 20px">
+      <button class="nav-link btn btn-outline-white" (click)="logout()" >Logout</button>
+    </li>
+  </ul>
+    </div>
 </nav>
 <router-outlet></router-outlet>

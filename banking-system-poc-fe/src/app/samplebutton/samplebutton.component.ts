@@ -8,11 +8,12 @@ import { AllaccountsService } from '../allaccounts.service';
   selector: 'app-samplebutton',
   templateUrl: './samplebutton.component.html',
   styleUrls: ['./samplebutton.component.css'],
-  
+
 })
 
 export class SamplebuttonComponent implements OnInit {
  public show:boolean = true;
+  public show0:boolean = true;
  public showvar1:boolean=false;
  public showvar2:boolean=false;
  public showvar3:boolean=false;
@@ -36,7 +37,7 @@ public accounts = [];
  }
   // toggle() {
   //   this.show = !this.show;
-   
+
   // }
   // valueChange()
   // {

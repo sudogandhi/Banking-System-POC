@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>account summary</title>
-</head>
+</head> -->
 <body>
-    <div class="container">
+  <div class="container">
+
+ 
+    <app-navbar-demo></app-navbar-demo>
+    
+    <div class="padding1">
     <h2>Account Details</h2>
     <table id="summary" >
         <th *ngFor="let item of header" >
@@ -30,7 +35,7 @@
         <td><button routerLink="/transaction" type="button" class="btn btn-primary" (click)=showtransaction()>click here</button></td>
     </tr>
     </table>
-    <router-outlet></router-outlet>
+    </div>
 </div>
 </body>
-</html>
+<!-- </html> -->
