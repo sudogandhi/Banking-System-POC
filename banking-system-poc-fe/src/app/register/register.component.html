@@ -1,58 +1,39 @@
-<p>register works!</p>
-<h2>Registration Page</h2>
-<br>
-<br>
-
 <div class="container">
-<form #customerLoginForm=ngForm (ngSubmit)="onFormSubmit()">
-
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <input type="text" [(ngModel)]="newUser.firstname" class="form-control" #firstnameField='ngModel' placeholder="firstname" name="firstname" required [class.is-invalid]="firstnameField.invalid">
-            <small class="text-danger" [class.d-none]="firstnameField.valid || firstnameField.untouched"><b>firstname</b> is required</small>         
-        </div>
-        &nbsp;&nbsp;
-        <div class="form-group  col-md-4">
-            <input type="text" [(ngModel)]="newUser.lastname" class="form-control" #lastnameField='ngModel' name="lastname" placeholder="lastname"  required [class.is-invalid]="lastnameField.invalid">
-            <small class="text-danger" [class.d-none]="lastnameField.valid || lastnameField.untouched"><b>lastname</b> is required</small>
+<h2>Register</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
         </div>
     </div>
-    
-    <div class="form-row">
-            <div class="form-group col-md-8">
-                <input type="email" [(ngModel)]="newUser.email" class="form-control" #emailField='ngModel' placeholder="email" name="email" required [class.is-invalid]="emailField.invalid">
-                <small class="text-danger" [class.d-none]="emailField.valid || emailField.untouched"><b>email</b> is required</small>         
-            </div>
-    </div> 
-    
-    <div class="form-row">
-            <div class="form-group col-md-4">
-                <input type="number" [(ngModel)]="newUser.phone1" class="form-control" #phone1Field='ngModel' placeholder="phone number" name="phone1" required [class.is-invalid]="phone1Field.invalid">
-                <small class="text-danger" [class.d-none]="phone1Field.valid || phone1Fielduntouched"><b>phone number</b> is required</small>         
-            </div>
-            &nbsp;&nbsp;
-            <div class="form-group col-md-4">
-                    <input type="number" [(ngModel)]="newUser.phone2" class="form-control" #phone2Field='ngModel' placeholder="alternative phone number" name="phone2" [class.is-invalid]="phone2Field.invalid">        
-            </div>
-    </div> 
-
-    <div class="form-row">
-            <div class="form-group col-md-4">
-                <input type="text" [(ngModel)]="newUser.username" class="form-control" #newUsernameField='ngModel' placeholder="username" name="username" required [class.is-invalid]="newUsernameField.invalid">
-                <small class="text-danger" [class.d-none]="newUsernameField.valid || newUsernameField.untouched"><b>username</b> is required</small>         
-            </div>
-            &nbsp;&nbsp;
-            <div class="form-group col-md-4">
-                    <input type="password" [(ngModel)]="newUser.password" class="form-control" #newPasswordField='ngModel' placeholder="password" name="password" [class.is-invalid]="newPasswordField.invalid">        
-                    <small class="text-danger" [class.d-none]="newPasswordField.valid || newPasswordField.untouched"><b>password</b> is required</small>
-            </div>
-    </div> 
-
-<button class="btn btn-primary" [disabled]='customerLoginForm.invalid'>Submit Data</button>
-</form> 
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Register</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+    </div>
+</form>
 </div>
-<!-- firstname   lastname
-email   phone no.
-username password 
-submit -->
-

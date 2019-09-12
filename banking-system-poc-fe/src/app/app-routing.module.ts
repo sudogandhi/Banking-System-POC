@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, Route} from '@angular/router';
 
 
 import { AccountDetailComponent } from './account-detail/account-detail.component';
@@ -15,7 +15,7 @@ import { RequestAccountComponent } from './request-account/request-account.compo
 // import { appRoutes } from './app.routing';
 
 const routes :Routes =[
- 
+
   { path:'dashboard',component:DashboardComponent},
   { path:'edit_profile',component:EditProfileComponent},
   { path:'account_details',component: AccountDetailComponent},
@@ -27,7 +27,6 @@ const routes :Routes =[
   { path:'login',component:LoginComponent},
   { path:'register',component:RegisterComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

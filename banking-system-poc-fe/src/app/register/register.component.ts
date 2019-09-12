@@ -1,27 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerRegister } from './CustomerRegister';
-import { NewUserEntryService } from './new-user-entry.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-@Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
-})
+import { AlertService, UserService } from '../_services';
+
+@Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
+  loading = false;
+  submitted = false;
 
-  newUser:CustomerRegister={firstname:"",lastname:"",email:"",phone1:0,phone2:0,username:"",password:""};
-  constructor(private _service:NewUserEntryService,private router:Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private alertService: AlertService) { }
 
-  ngOnInit() 
-  {}
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
-  onFormSubmit()
-  {
-    console.log(this.newUser);
-    this._service.save(this.newUser);
-    console.log(localStorage.getItem("UserCredentials"));
-    this.router.navigate(['/login']);
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
 
+  onSubmit() {
+    this.submitted = true;
+    console.log("in submit");
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      console.log('If invalid');
+      return;
+    }
+
+    this.loading = true;
+    console.log( this.registerForm.value);
+    this.userService.register(this.registerForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']);
+        },
+        error => {
+          console.log('in error');
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
 }
