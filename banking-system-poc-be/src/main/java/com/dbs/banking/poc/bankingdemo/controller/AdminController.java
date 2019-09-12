@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin("http://localhost:4200")
 public class AdminController {
 
     @Autowired
