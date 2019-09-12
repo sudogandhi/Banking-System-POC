@@ -46,12 +46,12 @@
                                         <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>account_no</th>
-                                                <th>account_type</th>
-                                                <th>blocked_s</th>
-                                                <th>balance</th>
-                                                <th>activated_s</th>
-                                                <th>id</th>
+                                                <th>Account Number</th>
+                                                <th>Account Type</th>
+                                                <th>Balance</th>
+                                                <th>Blocked Status</th>
+                                                <th>Activated Status</th>
+                                               
 
 
                                                 <!-- <th>status</th> -->
@@ -62,12 +62,12 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let account of accounts">
-                                                    <td>{{account.account_no}}</td>
-                                                    <td>{{account.account_type}}</td>
-                                                    <td>{{account.blocked_status}}</td>
+                                                    <td>{{account.accountNo}}</td>
+                                                    <td>{{account.accountType}}</td>
                                                     <td>{{account.balance}}</td>
-                                                    <td>{{account.activated_status}}</td>
-                                                    <td>{{account.id}}</td>
+                                                    <td>{{account.isBlocked}}</td>
+                                                    <td>{{account.isActivated}}</td>
+                                                  
                                                     <!-- <td>
                                                             <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
                                                              {{toggleBtn.checked}}
