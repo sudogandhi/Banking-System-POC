@@ -46,9 +46,14 @@
                                         <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>name</th>
-                                                <th>address</th>
-                                                <th>profile</th>
+                                                <th>account_no</th>
+                                                <th>account_type</th>
+                                                <th>blocked_s</th>
+                                                <th>balance</th>
+                                                <th>activated_s</th>
+                                                <th>id</th>
+
+
                                                 <!-- <th>status</th> -->
                                                 <!-- <th>Adhar Number</th>
                                                 <th>Mobile Number</th>
@@ -56,10 +61,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let data of  customerData">
-                                                    <td>{{data.name}}</td>
-                                                    <td>{{data.address}}</td>
-                                                    <td>{{data.profile}}</td>
+                                            <tr *ngFor="let account of accounts">
+                                                    <td>{{account.account_no}}</td>
+                                                    <td>{{account.account_type}}</td>
+                                                    <td>{{account.blocked_status}}</td>
+                                                    <td>{{account.balance}}</td>
+                                                    <td>{{account.activated_status}}</td>
+                                                    <td>{{account.id}}</td>
                                                     <!-- <td>
                                                             <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
                                                              {{toggleBtn.checked}}
@@ -107,7 +115,7 @@
                                 </div>
                         </div>
                </mat-tab>
-                <mat-tab label="Manage Accounts">
+                <!-- <mat-tab label="Manage Accounts">
                         <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animals1">Options</button>
                         <mat-menu #animals1="matMenu">
                                 <div class="b">
@@ -247,7 +255,7 @@
                                         </div>
                                 </div>
                 </mat-tab>  
-                
+                 -->
         </mat-tab-group>
          
 </body>

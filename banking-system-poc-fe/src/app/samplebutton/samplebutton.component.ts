@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AllaccountsService } from '../allaccounts.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {FormBuilder, FormGroup} from '@angular/forms';
 
@@ -16,6 +17,8 @@ export class SamplebuttonComponent implements OnInit {
  public showvar2:boolean=false;
  public showvar3:boolean=false;
  @Input() Valuetoggle:boolean=false;
+public accounts = [];
+
  show1(){
   this.showvar1=true;
   this.showvar2=false;
@@ -43,13 +46,13 @@ export class SamplebuttonComponent implements OnInit {
   {
     console.log("Hello")
   }
-  customerData:any=[
-    {name:"Ashwini",address:"Pune",profile:"Application D",status:false},
-    {name:"Rachana",address:"Nagpur",profile:"Data scientists",status:false},
-    {name:"Pradnya",address:"Kolhapur",profile:"Application D",status:false},
-    {name:"Shivani",address:"Kolhapur",profile:"Application D",status:false},
+  // customerData:any=[
+  //   {name:"Ashwini",address:"Pune",profile:"Application D",status:false},
+  //   {name:"Rachana",address:"Nagpur",profile:"Data scientists",status:false},
+  //   {name:"Pradnya",address:"Kolhapur",profile:"Application D",status:false},
+  //   {name:"Shivani",address:"Kolhapur",profile:"Application D",status:false},
 
-  ]
+  // ]
   //  onChange(name:string)
   // {
   //   console.log(name);
@@ -64,8 +67,11 @@ export class SamplebuttonComponent implements OnInit {
   //   });
 
   // }
+  constructor(private _allaccountservice : AllaccountsService){}
+  
   ngOnInit() {
-
+    this._allaccountservice.getAllAccountData()
+    .subscribe(data =>{this.accounts = data;console.log(this.accounts)});
   }
 
 
