@@ -1,1 +1,18 @@
-.btn{min-width:250px;}
+.btn{min-width:300px;}
+.row{padding-top: 70px;padding-left: 220px;}
+
+
+/* .bgimg-1 {
+    position: relative;
+    opacity: 0.65;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  }
+  .bgimg-1 {
+    background-image: url("https://assets.hardwarezone.com/img/2016/03/dbs-header.jpg");
+    height: 100%;
+  } */
+
+/* body{background-image: url('https://assets.hardwarezone.com/img/2016/03/dbs-header.jpg');} */

@@ -9,6 +9,7 @@ import { Observable,of } from 'rxjs';
 })
 export class LoginService 
 {
+  generated_token:string='';
   customerData : CustomerLogin[]=[];
 
   constructor() { }
@@ -22,5 +23,11 @@ export class LoginService
   {
     this.customerData=JSON.parse(localStorage.getItem("UserCredentials"));
     return of(this.customerData.find(entry=>{return entry.username === username}));
+  }
+
+  getLoginToken(user:CustomerLogin):Observable<string>
+  {
+    this.generated_token='dsgeruiuretkjrbg';
+    return of(this.generated_token);
   }
 }

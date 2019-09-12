@@ -14,7 +14,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RequestAccountComponent } from './request-account/request-account.component';
 // import { appRoutes } from './app.routing';
 
-const appRoutes :Routes =[
+const routes :Routes =[
  
   { path:'dashboard',component:DashboardComponent},
   { path:'edit_profile',component:EditProfileComponent},
@@ -29,9 +29,8 @@ const appRoutes :Routes =[
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 
-//export const routing = RouterModule.forRoot(appRoutes);
 export class AppRoutingModule { }

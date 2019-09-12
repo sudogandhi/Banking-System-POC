@@ -1,31 +1,34 @@
-<div class="container">
-  <h3>Request For Account Number</h3>
-  <hr>
-  <form [formGroup]="requestAccount" (ngSubmit)="onSubmit()" style="display: flex;flex-direction: column;width: 40%">
-      <mat-form-field>
-        <mat-label>Select Account Type</mat-label>
-        <mat-select formControlName="accountType"
-        [class.is-invalid]="requestAccount.get('accountType').invalid||requestAccount.get('accountType').untouched">
-          <mat-option value="salary">Salary</mat-option>
-          <mat-option value="savings">Savings</mat-option>
-          <mat-option value="current">Current</mat-option>
-        </mat-select>
-        <mat-error *ngIf="requestAccount.get('accountType').invalid">
-          Choose an Account Type
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Select Branch Change</mat-label>
-        <mat-select formControlName="branchName"
-        [class.is-invalid]="requestAccount.get('branchName').invalid||requestAccount.get('branchName').untouched">
-          <mat-option *ngFor="let branch of branchInfo" [value]="branch.id" >{{branch.branchName}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="requestAccount.get('branchName').invalid">
-          Choose branch name
-        </mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" style="width: 30%" [disabled]="requestAccount.invalid">REQUEST</button>
-      <br>
-      <h3 style="display: none" id="message">Request is successfully raised</h3>
-  </form>
+<div>
+  <app-navbar-demo></app-navbar-demo>
+  <div class="container padding1">
+    <h3>Request For Account Number</h3>
+    <hr>
+    <form [formGroup]="requestAccount" (ngSubmit)="onSubmit()" style="display: flex;flex-direction: column;width: 40%">
+        <mat-form-field>
+          <mat-label>Select Account Type</mat-label>
+          <mat-select formControlName="accountType"
+          [class.is-invalid]="requestAccount.get('accountType').invalid||requestAccount.get('accountType').untouched">
+            <mat-option value="salary">Salary</mat-option>
+            <mat-option value="savings">Savings</mat-option>
+            <mat-option value="current">Current</mat-option>
+          </mat-select>
+          <mat-error *ngIf="requestAccount.get('accountType').invalid">
+            Choose an Account Type
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Select Branch Change</mat-label>
+          <mat-select formControlName="branchName"
+          [class.is-invalid]="requestAccount.get('branchName').invalid||requestAccount.get('branchName').untouched">
+            <mat-option *ngFor="let branch of branchInfo" [value]="branch.id" >{{branch.branchName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="requestAccount.get('branchName').invalid">
+            Choose branch name
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" style="width: 30%" [disabled]="requestAccount.invalid">REQUEST</button>
+        <br>
+        <h3 style="display: none" id="message">Request is successfully raised</h3>
+    </form>
+  </div>
 </div>

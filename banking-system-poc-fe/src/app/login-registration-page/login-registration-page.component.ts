@@ -28,10 +28,10 @@ export class LoginRegistrationPageComponent implements OnInit {
   {
     if(action == 'login')
     {
+      let lbtn = document.getElementsByClassName("btn-group");
       this.router.navigate(['/login']);
-
     }
-    else
+    else if(action == 'register')
     {
       this.router.navigate(['/register']);
     }

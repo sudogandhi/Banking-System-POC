@@ -38,16 +38,14 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginService } from './login/login.service';
 import { NewUserEntryService } from './register/new-user-entry.service';
 import { AppRoutingModule } from './app-routing.module';
-const appRoutes: Routes = [];
+
+
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: false}),
     NgxPaginationModule, // add here
     FormsModule,
     MatSelectModule,

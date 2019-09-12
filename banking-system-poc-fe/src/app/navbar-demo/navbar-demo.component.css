@@ -7,6 +7,8 @@
 {
   background-color: #4C8BAF;
   border: #4C8BAF;
+  position: fixed;
+  top: 0;
 }
 .container-fluid
 {
