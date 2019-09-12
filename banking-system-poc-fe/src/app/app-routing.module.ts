@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RequestAccountComponent } from './request-account/request-account.component';
+import {CustomerHomeComponent} from './customer-home/customer-home.component';
 // import { appRoutes } from './app.routing';
 
 const routes :Routes =[
@@ -25,7 +26,8 @@ const routes :Routes =[
   { path:'home',component:HomeComponent},
   { path:'login_register',component:LoginRegistrationPageComponent},
   { path:'login',component:LoginComponent},
-  { path:'register',component:RegisterComponent}
+  { path:'register',component:RegisterComponent},
+  { path: 'customer_home', component: CustomerHomeComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
