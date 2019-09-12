@@ -22,7 +22,11 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.min(6)]],
+      email : ['',Validators.required],
+      mobileNo : ['',[Validators.required,Validators.min(10)]],
+      adharCard : ['',Validators.required],
+      panCard : ['',Validators.required]
     });
   }
 
@@ -39,18 +43,17 @@ export class RegisterComponent implements OnInit {
     }
 
     this.loading = true;
-    console.log( this.registerForm.value);
+    console.log("---> :"+ this.registerForm.value);
     this.userService.register(this.registerForm.value)
-      .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
+          console.log("data : "+data);
           this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);
         },
         error => {
           console.log('in error');
-          this.alertService.error(error);
+          //this.alertService.error(error);
           this.loading = false;
         });
   }
