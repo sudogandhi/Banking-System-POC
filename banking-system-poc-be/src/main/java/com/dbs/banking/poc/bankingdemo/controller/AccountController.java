@@ -4,6 +4,7 @@ import com.dbs.banking.poc.bankingdemo.co.AccountCO;
 import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
+import com.dbs.banking.poc.bankingdemo.entities.Customer;
 import com.dbs.banking.poc.bankingdemo.entities.Transaction;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
@@ -65,6 +66,11 @@ public class AccountController {
     @GetMapping(value="/allTransactions")
     public List<Transaction> allTransaction(){
         return accountService.allTransaction();
+    }
+
+    @PostMapping(value="/transactions")
+    public List<Transaction> userTransaction(@RequestBody @Valid AccountNumberCO accountNumberCO) throws UserNotExistsException {
+        return accountService.userTransactions(accountNumberCO);
     }
 
 

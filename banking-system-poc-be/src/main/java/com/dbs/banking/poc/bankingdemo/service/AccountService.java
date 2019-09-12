@@ -76,12 +76,19 @@ public class AccountService {
 
     public String activateAccount(AccountNumberCO accountNumberCO) {
         Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        System.out.println(account.getAccountNo());
         account.setActivated(true);
+        accountRepository.save(account);
         return "Account Activated";
 
     }
 
     public List<Transaction> allTransaction() {
         return transactionRepository.findAll();
+    }
+
+    public List<Transaction> userTransactions(AccountNumberCO accountNumberCO) throws UserNotExistsException {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        return transactionRepository.userTransactions(account);
     }
 }
