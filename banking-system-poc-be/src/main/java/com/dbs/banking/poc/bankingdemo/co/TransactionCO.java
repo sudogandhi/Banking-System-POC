@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,10 +15,10 @@ import javax.validation.constraints.NotNull;
 public class TransactionCO {
 
     @NotNull
-    String fromDate;
+    LocalDateTime fromDate;
 
     @NotNull
-    String toDate;
+    LocalDateTime toDate;
 
     @NotNull
     Long accountNo;

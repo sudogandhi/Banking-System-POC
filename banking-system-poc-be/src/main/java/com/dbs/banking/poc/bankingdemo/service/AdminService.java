@@ -82,7 +82,7 @@ public class AdminService {
     public List<Account> fetchAccounts(String accountStatus, Integer page) {
         List<Account> accountList = null;
         Page<Account> accountPage = null;
-        PageRequest pageRequest = new PageRequest(page,5,new Sort(Sort.Direction.ASC,"id"));
+        PageRequest pageRequest = new PageRequest(page,100,new Sort(Sort.Direction.ASC,"id"));
         if("ALL".equalsIgnoreCase(accountStatus)) {
             accountPage = accountPagenationRepository.findAll(pageRequest);
         }
