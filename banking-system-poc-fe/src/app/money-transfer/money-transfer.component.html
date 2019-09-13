@@ -2,35 +2,41 @@
 <div class=" container padding1">
     <h1>Money Transfer Page</h1>
     <hr>
-    <form [formGroup]="moneyTransfer" (ngSubmit)="onSubmit()" class="example-container">
+    <div class="mat-card">
+      <div class="container">
+      <form [formGroup]="moneyTransfer" (ngSubmit)="onSubmit()" class="example-container">
 
-      <mat-form-field>
-        <mat-label>Select Account No</mat-label>
-        <mat-select formControlName="accountNo"
-        [class.is-invalid]="moneyTransfer.get('accountNo').invalid||moneyTransfer.get('accountNo').untouched">
-          <mat-option *ngFor="let acnt of accountNo" [value]="acnt">{{acnt}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="moneyTransfer.get('accountNo').invalid">
-          Choose an account Number
-        </mat-error>
-      </mat-form-field>
-      <br>
-      <br>
-      <mat-label>Recipient AccntNo:</mat-label>
-      <input  type="number" placeholder="Receiver Account Number" formControlName="ToAccountNo"
-      [class.is-invalid]="moneyTransfer.get('ToAccountNo').invalid||moneyTransfer.get('ToAccountNo').untouched">
-      <mat-error *ngIf="moneyTransfer.get('ToAccountNo').invalid">Enter Account Number
-      </mat-error>
-      <br>
-      <br>
-      <mat-label>Enter Amount:</mat-label>
-      <input  type="number" placeholder="Amount" formControlName="amount"
-      [class.is-invalid]="moneyTransfer.get('amount').invalid||moneyTransfer.get('amount').untouched">
-      <mat-error *ngIf="moneyTransfer.get('amount').invalid">Enter Amount</mat-error>
-      <br>
-      <br>
-      <button mat-raised-button color="primary" [disabled]="moneyTransfer.invalid" style="width: 40px">SEND</button>
-      <h3 style="display: none" id="message">Transaction is successfull!!</h3>
-    </form>
+        <div class="form-group">
+        <mat-form-field>
+          <mat-label>Select Account No</mat-label>
+          <mat-select formControlName="accountNo" class="form-control"
+          [class.is-invalid]="moneyTransfer.get('accountNo').invalid||moneyTransfer.get('accountNo').untouched">
+            <mat-option *ngFor="let acnt of accountNo" [value]="acnt">{{acnt}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="moneyTransfer.get('accountNo').invalid">
+            Choose an account Number
+          </mat-error>
+        </mat-form-field>
+        </div>
 
+        <div class="form-group">
+          <mat-label>Recipient AccntNo:</mat-label>
+          <input  type="number" class="form-control" placeholder="Receiver Account Number" formControlName="ToAccountNo"
+          [class.is-invalid]="moneyTransfer.get('ToAccountNo').invalid||moneyTransfer.get('ToAccountNo').untouched">
+          <mat-error *ngIf="moneyTransfer.get('ToAccountNo').invalid">Enter Account Number
+          </mat-error>
+
+        </div>
+
+        <div class="form-group">
+          <mat-label>Enter Amount:</mat-label>
+          <input  type="number" placeholder="Amount" formControlName="amount" class="form-control"
+          [class.is-invalid]="moneyTransfer.get('amount').invalid||moneyTransfer.get('amount').untouched">
+          <mat-error *ngIf="moneyTransfer.get('amount').invalid">Enter Amount</mat-error>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="moneyTransfer.invalid" style="width: 40px">SEND</button>
+        <h3 style="display: none" id="message">Transaction is successfull!!</h3>
+      </form>
+      </div>
+    </div>
 </div>

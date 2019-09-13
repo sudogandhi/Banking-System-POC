@@ -8,9 +8,8 @@
           <mat-label>Select Account Type</mat-label>
           <mat-select formControlName="accountType"
           [class.is-invalid]="requestAccount.get('accountType').invalid||requestAccount.get('accountType').untouched">
-            <mat-option value="salary">Salary</mat-option>
-            <mat-option value="savings">Savings</mat-option>
-            <mat-option value="current">Current</mat-option>
+            <mat-option value="SAVING">Savings</mat-option>
+            <mat-option value="CURRENT">Current</mat-option>
           </mat-select>
           <mat-error *ngIf="requestAccount.get('accountType').invalid">
             Choose an Account Type
@@ -20,7 +19,7 @@
           <mat-label>Select Branch Change</mat-label>
           <mat-select formControlName="branchName"
           [class.is-invalid]="requestAccount.get('branchName').invalid||requestAccount.get('branchName').untouched">
-            <mat-option *ngFor="let branch of branchInfo" [value]="branch.id" >{{branch.branchName}}</mat-option>
+            <mat-option *ngFor="let branch of branchData" [value]="branch.id" >{{branch.branchName}}</mat-option>
           </mat-select>
           <mat-error *ngIf="requestAccount.get('branchName').invalid">
             Choose branch name

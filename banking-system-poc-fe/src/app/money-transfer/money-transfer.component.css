@@ -9,5 +9,13 @@
 
 .padding1
 {
-  padding-top : 150px;
+  padding-top : 100px;
+}
+.mat-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(51,51,51,1);
+}
+.mat-card {
+  box-shadow: 0 4px 8px 0 rgba(51,51,51,1);
+  transition: 0.3s;
+  width: 90%;
 }

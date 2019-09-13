@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
-import { data1, profileData} from './profileData';
+import {  profileData} from './profileData';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditProfileService {
 
-  constructor() { }
+  constructor(private _http:HttpClient) { }
 
   public getData():Observable<profileData>
   {
-    return of(data1);
+    //return of(data1);
+    return this._http.get<profileData>('http://localhost:8089/customerDetails');
+  }
+  public updateData(updatedData):Observable<any>
+  {
+    return this._http.put('http://localhost:8089/updateUser',updatedData);
   }
 }

@@ -9,11 +9,11 @@
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
             <div class="form-group" style="width: 40%" id="div">
               <label>First Name</label>
-              <input [(ngModel)]="fetchedData.firstName" type="text" class="form-control" disabled=true formControlName="firstname" id="fname" >
+              <input [(ngModel)]="fetchedData.firstName" type="text" class="form-control" formControlName="firstname" id="fname" >
             </div>
             <div class="form-group" style="width: 40%">
               <label>Last Name</label>
-              <input type="text" class="form-control" formControlName="lastname" id="lname" disabled=true [ngModel]="fetchedData.lastName"  >
+              <input type="text" class="form-control" formControlName="lastname" id="lname" [ngModel]="fetchedData.lastName"  >
             </div>
             <div class="form-group" style="width: 40%">
               <label>Email</label>
@@ -44,7 +44,7 @@
               <form [formGroup]="personForm">
                 <div class="form-group" style="width: 40%">
                   <label>Aadhar Number</label>
-                  <input [(ngModel)]="fetchedData.aadharCard" formControlName="aadhar"  class="form-control" type="text" disabled=true>
+                  <input [(ngModel)]="fetchedData.adharCard" formControlName="aadhar"  class="form-control" type="text" disabled=true>
                 </div>
                 <div class="form-group" style="width: 40%">
                   <label>PAN Number</label>

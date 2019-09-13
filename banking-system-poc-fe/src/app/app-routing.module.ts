@@ -14,10 +14,13 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RequestAccountComponent } from './request-account/request-account.component';
 import {CustomerHomeComponent} from './customer-home/customer-home.component';
 import { SamplebuttonComponent } from './samplebutton/samplebutton.component';
+import { RedirectionComponentComponent } from './redirection-component/redirection-component.component';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 // import { appRoutes } from './app.routing';
 
 const routes :Routes =[
 
+  {path: 'transaction/:id', component:AccountTransactionComponent},
   { path:'dashboard',component:DashboardComponent},
   { path:'edit_profile',component:EditProfileComponent},
   { path:'account_details',component: AccountDetailComponent},
@@ -29,7 +32,8 @@ const routes :Routes =[
   { path:'login',component:LoginComponent},
   { path:'register',component:RegisterComponent},
   { path: 'customer_home', component: CustomerHomeComponent},
-  { path: 'admin',component: SamplebuttonComponent}
+  { path: 'admin',component: SamplebuttonComponent},
+  { path: 'redirect', component: RedirectionComponentComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

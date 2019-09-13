@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
 import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
+import com.dbs.banking.poc.bankingdemo.co.TransactionCO;
 import com.dbs.banking.poc.bankingdemo.entities.*;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
@@ -12,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -99,7 +105,24 @@ public class AccountService {
         Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
         List<Transaction> result = transactionRepository.userTransactions(account);
         //Collections.reverse(result);
-        return result.subList(0,Math.min(10,result.size()-1));
+        return result.subList(0,Math.min(10,result.size()));
 
     }
+
+    public List<Transaction> transactionBetweenDates(TransactionCO transactionCO) throws ParseException {
+        Account account=accountRepository.findByAccountNo(transactionCO.getAccountNo());
+//        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+//        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String fromDate = format.parse(transactionCO.getFromDate());
+//        String toDate = format.parse(transactionCO.getToDate());
+//        DateTimeFormatter formatrmatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        LocalDateTime fromDate= (LocalDateTime) formatter.parse(transactionCO.getFromDate());
+//        LocalDateTime toDate= (LocalDateTime) formatter.parse(transactionCO.getToDate());
+//        System.out.println(fromDate + "   -   "+toDate);
+//        List<Transaction> result=transactionRepository.transactionBetweenDates(fromDate,toDate);
+        List<Transaction> result=transactionRepository.transactionBetweenDates(transactionCO.getFromDate(),transactionCO.getFromDate());
+        return result;
+    }
+
 }
