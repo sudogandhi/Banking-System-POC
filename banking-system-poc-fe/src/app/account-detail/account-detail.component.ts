@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountDataService} from '../account-data.service'; 
+import { Accdetail } from '../accdetail';
+
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
   styleUrls: ['./account-detail.component.css']
 })
 export class AccountDetailComponent implements OnInit {
-  constructor(private _detail:AccountDataService) { }
+  constructor(private _service:AccountDataService) { }
   value:any;
   header;
   balance:number
   hidebutton: boolean=true
+  public _detail:Accdetail[];
 
   getValue(){
-    this.value=this._detail.getData();
+    this.value=this._service.getData();
     this.header=Object.keys(this.value[0]);
   }
 
@@ -30,7 +33,8 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._detail.setData();
+    this._service.getAccountDetail().subscribe(data=> {this._detail = data; console.log("details of acc",this._detail)})
+    this._service.setData();
     this.getValue();
   }
 
