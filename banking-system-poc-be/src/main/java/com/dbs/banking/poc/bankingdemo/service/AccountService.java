@@ -2,18 +2,17 @@ package com.dbs.banking.poc.bankingdemo.service;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
 import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
-import com.dbs.banking.poc.bankingdemo.entities.Account;
-import com.dbs.banking.poc.bankingdemo.entities.AccountType;
-import com.dbs.banking.poc.bankingdemo.entities.Branch;
-import com.dbs.banking.poc.bankingdemo.entities.Customer;
+import com.dbs.banking.poc.bankingdemo.entities.*;
 import com.dbs.banking.poc.bankingdemo.exceptions.BranchNotFoundException;
 import com.dbs.banking.poc.bankingdemo.exceptions.UserNotExistsException;
 import com.dbs.banking.poc.bankingdemo.repositories.AccountRepository;
 import com.dbs.banking.poc.bankingdemo.repositories.BranchRepository;
+import com.dbs.banking.poc.bankingdemo.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -24,6 +23,9 @@ public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    TransactionRepository  transactionRepository;
 
     @Autowired
     CustomerService customerService;
@@ -71,5 +73,33 @@ public class AccountService {
 
     public Double getBalance(AccountNumberCO accountNumberCO) {
         return accountRepository.findBalanceById(accountNumberCO.getAccountNo());
+    }
+
+    public String activateAccount(AccountNumberCO accountNumberCO) {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        System.out.println(account.getAccountNo());
+        account.setActivated(true);
+        accountRepository.save(account);
+        return "Account Activated";
+
+    }
+
+    public List<Transaction> allTransaction() {
+        return transactionRepository.findAll();
+    }
+
+    public List<Transaction> userTransactions(AccountNumberCO accountNumberCO) throws UserNotExistsException {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        List<Transaction> result = transactionRepository.userTransactions(account);
+        //Collections.reverse(result);
+        return result;
+    }
+
+    public List<Transaction> lastTenTransactions(AccountNumberCO accountNumberCO) {
+        Account account=accountRepository.findByAccountNo(accountNumberCO.getAccountNo());
+        List<Transaction> result = transactionRepository.userTransactions(account);
+        //Collections.reverse(result);
+        return result.subList(0,Math.min(10,result.size()-1));
+
     }
 }

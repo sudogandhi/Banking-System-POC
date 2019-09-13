@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AllaccountsService } from '../allaccounts.service';
+import { AllcustomerDETService } from '../allcustomer-det.service';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {FormBuilder, FormGroup} from '@angular/forms';
 
@@ -13,12 +15,13 @@ import { AllaccountsService } from '../allaccounts.service';
 
 export class SamplebuttonComponent implements OnInit {
  public show:boolean = true;
-  public show0:boolean = true;
+  public show0:boolean = false;
  public showvar1:boolean=false;
  public showvar2:boolean=false;
  public showvar3:boolean=false;
  @Input() Valuetoggle:boolean=false;
 public accounts = [];
+public AllCustomers = [];
 
  show1(){
   this.showvar1=true;
@@ -68,11 +71,15 @@ public accounts = [];
   //   });
 
   // }
-  constructor(private _allaccountservice : AllaccountsService){}
+  constructor(private _allaccountservice : AllaccountsService , private _allcustomerservive : AllcustomerDETService){}
   
   ngOnInit() {
     this._allaccountservice.getAllAccountData()
     .subscribe(data =>{this.accounts = data;console.log(this.accounts)});
+
+    this._allcustomerservive.getAllCustomerData()
+    .subscribe(data =>{this.AllCustomers = data;console.log(this.AllCustomers)});
+
   }
 
 

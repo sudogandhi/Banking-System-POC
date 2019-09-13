@@ -1,9 +1,22 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { headersToString } from 'selenium-webdriver/http';
+import { Accdetail } from './accdetail';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountDataService {
+  baseUrl="http://localhost:8089/getAllAccounts";
+
+  constructor(private _http:HttpClient){ 
+  }
+
+  public getAccountDetail():Observable<Accdetail[]>{
+    return this._http.get<Accdetail[]>(this.baseUrl);
+  }
+
   arr=[{
     "AccountNo": 326541254,
     "Branch":"Mumbai",
@@ -61,4 +74,5 @@ export class AccountDataService {
   {
     return this.transactiondetail;
   }
+
 }
