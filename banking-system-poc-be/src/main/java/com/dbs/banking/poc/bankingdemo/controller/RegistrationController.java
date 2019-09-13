@@ -26,7 +26,7 @@ public class RegistrationController {
 
          String response = registrationService.register(registrationCO);
 
-         return new ResponseDTO(response, HttpStatus.CREATED);
+         return new ResponseDTO("{ \"message\" : \""+response+"\"}", HttpStatus.OK);
     }
 
     @PostMapping(value="/requestForgetPassword")
