@@ -15,6 +15,7 @@ public interface TransactionRepository extends JpaRepository<Transaction,Integer
     @Query("SELECT t from Transaction t where t.sender = ?1 or t.receiver = ?1 order by createdAt DESC")
     List<Transaction> userTransactions(Account account);
 
-    @Query("SELECT t from Transaction t where t.createdAt between ?1 and ?2")
-    List<Transaction> transactionBetweenDates(LocalDateTime fromDate, LocalDateTime toDate);
+//    @Query("SELECT t from Transaction t where t.createdAt between '2019-08-12 21:48:14.654000' and '2019-10-12 21:48:14.654000'")
+//    List<Transaction> transactionBetweenDates(LocalDateTime fromDate, LocalDateTime toDate);
+
 }
