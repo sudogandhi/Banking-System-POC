@@ -18,7 +18,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 
 
-import {HttpInterceptorBasicService} from './_services/http/http-interceptor-basic.service';
+//import {HttpInterceptorBasicService} from './_services/http/http-interceptor-basic.service';
 
 // import { LoginComponent } from './login';
 
@@ -113,7 +113,7 @@ import { CustomerHomeComponent } from './customer-home/customer-home.component';
         UserService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicService, multi: true},
+   // {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicService, multi: true},
 
         // provider used to create fake backend
         fakeBackendProvider
