@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Transaction} from './transaction';
-import {trans} from './transaction-mock.data';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +8,8 @@ import {trans} from './transaction-mock.data';
 export class TransactionServiceService {
 
   constructor() { }
-  public getTransaction(): Observable<Transaction[]>
+  /*public getTransaction(): Observable<Transaction[]>
   {
       return of(trans);
-  }
+  }*/
 }

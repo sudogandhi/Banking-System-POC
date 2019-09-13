@@ -13,9 +13,9 @@ export class GenerateStatementService {
   {
     return this._http.get('http://localhost:8089/getAllAccounts');
   }
-  public getLastTenTransaction():Observable<any>
+  public getLastTenTransaction(accountNo):Observable<any>
   {
-    return this._http.get('')
+    return this._http.post('http://localhost:8089/lastTenTransactions',accountNo);
   }
 
 }

@@ -40,10 +40,10 @@ export class GenerateStatementComponent implements OnInit
   ngOnInit() {
           this._service.getAccountNumbers().subscribe(data=>{
             this.accounts=data;
-            console.log(this.accounts);
+            //console.log("all user account"+data);
             for (let i in this.accounts)
             {
-              console.log(this.accounts[i].accountNo);
+              //console.log(this.accounts[i].accountNo);
               this.accountNumbers.push({value:(""+this.accounts[i].accountNo),viewValue:(""+this.accounts[i].accountNo)})
             }
           });
@@ -56,9 +56,14 @@ export class GenerateStatementComponent implements OnInit
   onFormSubmit()
   {
       this.action = this.statementForm.get('periodControl').value;
+      let accountNo = this.statementForm.get('accountControl').value;
+      let fetchTrans  = [];
       if(this.action === 'tenTransaction')
       {
-
+          this._service.getLastTenTransaction({accountNo:""+accountNo}).subscribe(data=>{
+           this.trans = data;
+            console.log(this.trans[0].receiver['accountNo']);
+          });
       }
       else if(this.action === 'date range')
       {
