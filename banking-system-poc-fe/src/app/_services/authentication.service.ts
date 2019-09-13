@@ -27,12 +27,12 @@ export class AuthenticationService {
   }
 
   executeAuthenticationService(username, password) {
-  
+
     console.log(this.http.post<AuthenticationBean>(`http://localhost:8089/login`, {"username":username, "password":password}).subscribe(
       (response) => {
         if(response) {
           localStorage.setItem('token',response.token);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/customer_home']);
         }
       }
     ));

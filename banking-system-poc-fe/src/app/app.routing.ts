@@ -7,12 +7,12 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 
 export const appRoutes: Routes = [
-    // { path: '', component: HomeComponent },
-    // { path: 'login', component: LoginComponent },
-    // { path: 'register', component: RegisterComponent },
+    { path: '', component: HomeComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
 
-    // // otherwise redirect to home
-    // { path: '**', redirectTo: '' }
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

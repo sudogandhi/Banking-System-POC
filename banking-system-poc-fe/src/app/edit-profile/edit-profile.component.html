@@ -1,4 +1,59 @@
 <app-navbar-demo></app-navbar-demo>
-<div class="padding1">
-    <p>edit-profile works!</p>
+<div class="container padding1">
+  <div class="row">
+    <div class="col-6">
+      <h3>Customer Information</h3>
+      <div class="mat-card">
+        <br>
+        <div class="container">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="form-group" style="width: 40%" id="div">
+              <label>First Name</label>
+              <input [(ngModel)]="fetchedData.firstName" type="text" class="form-control" disabled=true formControlName="firstname" id="fname" >
+            </div>
+            <div class="form-group" style="width: 40%">
+              <label>Last Name</label>
+              <input type="text" class="form-control" formControlName="lastname" id="lname" disabled=true [ngModel]="fetchedData.lastName"  >
+            </div>
+            <div class="form-group" style="width: 40%">
+              <label>Email</label>
+              <input type="email"  [(ngModel)]="fetchedData.email" class="form-control" formControlName="email" id="email">
+              <mat-error *ngIf="editForm.get('email').invalid">
+                Enter Email
+              </mat-error>
+            </div>
+            <div class="form-group" style="width: 40%">
+              <label>Phone</label>
+              <input type="number" [(ngModel)]="fetchedData.mobileNo" class="form-control" formControlName="phone" id="phone">
+              <mat-error *ngIf="editForm.get('phone').invalid">
+                Enter Phone Number
+              </mat-error>
+            </div>
+            <div class="form-group">
+              <button mat-raised-button color="primary" [disabled]="editForm.invalid">UPDATE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3>Personal Information</h3>
+        <div class="mat-card">
+          <br>
+            <div class="container">
+              <form [formGroup]="personForm">
+                <div class="form-group" style="width: 40%">
+                  <label>Aadhar Number</label>
+                  <input [(ngModel)]="fetchedData.aadharCard" formControlName="aadhar"  class="form-control" type="text" disabled=true>
+                </div>
+                <div class="form-group" style="width: 40%">
+                  <label>PAN Number</label>
+                  <input  [(ngModel)]="fetchedData.panCard"  formControlName="pan" class="form-control" type="text" disabled=true  >
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+
+  </div>
 </div>
