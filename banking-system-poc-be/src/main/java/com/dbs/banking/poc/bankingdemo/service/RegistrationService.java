@@ -144,7 +144,7 @@ public class RegistrationService {
             loginRepository.save(login);
             String emailBody = "Hi "+customer.getFirstName() + " " + customer.getLastName() + "" +
                     " your new password is "+tokenString+"\n" +
-                    "Please change the password after logging in with this password.";
+                    "Please use this as password .";
             String emailSubject = "Hi "+login.getUsername()+" reset password.";
             emailService.sendSimpleMessage(customer.getEmail(),emailSubject,emailBody);
         }
