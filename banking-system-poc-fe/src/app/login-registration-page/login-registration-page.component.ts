@@ -21,14 +21,14 @@ export class LoginRegistrationPageComponent implements OnInit {
     // this.notShow=true;
     // this.success=true;
     // this.router.navigate(['/dashboard']);
-   
+
   }
 
   onClick(action:string)
   {
     if(action == 'login')
     {
-      let lbtn = document.getElementsByClassName("btn-group");
+      // let lbtn = document.getElementsByClassName("btn-group");
       this.router.navigate(['/login']);
     }
     else if(action == 'register')

@@ -5,6 +5,8 @@ import { User } from '../_models';
 
 @Injectable()
 export class UserService {
+    UserInformation={}
+
     constructor(private http: HttpClient) { }
 
     getAll() {
@@ -22,9 +24,9 @@ export class UserService {
         return this.http.post(`http://localhost:8089/register`, user);
     }
 
-    // update(user: User) {
-    //     return this.http.put(`/users/` + user.id, user);
-    // }
+    update(user: User) {
+        return this.http.put(`/users/` + user.id, user);
+    }
 
     delete(id: number) {
         return this.http.delete(`/users/` + id);
