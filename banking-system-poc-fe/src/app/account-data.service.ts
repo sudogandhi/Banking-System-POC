@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Accdetail } from './accdetail';
-import { Acctransaction } from './acctransaction';
+import {Acctransaction} from './acctransaction';
+// import { Acctransaction } from './acctransaction';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ import { Acctransaction } from './acctransaction';
 export class AccountDataService {
   baseUrl="http://localhost:8089";
 
-  constructor(private _http:HttpClient){ 
-   
+  constructor(private _http:HttpClient){
+
   }
 
   public getAccountDetail():Observable<Accdetail[]>{
@@ -70,7 +71,7 @@ export class AccountDataService {
   }
   getData()
   {
-    return this.userdetail; 
+    return this.userdetail;
   }
   // setTransaction(){
   //   this.transactiondetail=this.arr[0].transactions;

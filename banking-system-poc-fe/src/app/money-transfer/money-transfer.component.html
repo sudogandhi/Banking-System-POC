@@ -11,7 +11,8 @@
           <mat-label>Select Account No</mat-label>
           <mat-select formControlName="accountNo" class="form-control"
           [class.is-invalid]="moneyTransfer.get('accountNo').invalid||moneyTransfer.get('accountNo').untouched">
-            <mat-option *ngFor="let acnt of accountNo" [value]="acnt">{{acnt}}</mat-option>
+            <mat-option  value="0" selected="true">----</mat-option>
+            <mat-option *ngFor="let acnt of accountNumbers" [value]="acnt.value">{{acnt.viewValue}}</mat-option>
           </mat-select>
           <mat-error *ngIf="moneyTransfer.get('accountNo').invalid">
             Choose an account Number
@@ -25,7 +26,6 @@
           [class.is-invalid]="moneyTransfer.get('ToAccountNo').invalid||moneyTransfer.get('ToAccountNo').untouched">
           <mat-error *ngIf="moneyTransfer.get('ToAccountNo').invalid">Enter Account Number
           </mat-error>
-
         </div>
 
         <div class="form-group">
@@ -35,7 +35,7 @@
           <mat-error *ngIf="moneyTransfer.get('amount').invalid">Enter Amount</mat-error>
         </div>
         <button mat-raised-button color="primary" [disabled]="moneyTransfer.invalid" style="width: 40px">SEND</button>
-        <h3 style="display: none" id="message">Transaction is successfull!!</h3>
+        <h3 style="display: none" id="message">{{message}}</h3>
       </form>
       </div>
     </div>
