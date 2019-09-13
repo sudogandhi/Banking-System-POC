@@ -28,7 +28,7 @@ export class EditProfileComponent implements OnInit {
     firstName:'',
     lastName:'',
     email:'',
-    aadharCard:'',
+    adharCard:'',
     mobileNo:0,
     panCard:''
   }
@@ -43,7 +43,13 @@ export class EditProfileComponent implements OnInit {
   }
   onSubmit()
   {
+    console.log(this.editForm.value);
 
+   let updatedData = {firstName: this.editForm.get('firstname').value,
+                      lastName:this.editForm.get('lastname').value,
+                      email:this.editForm.get('email').value,
+                      mobileNo: (""+this.editForm.get('phone').value)};
+    this._service.updateData(updatedData).subscribe(data=>console.log(data));
     alert('I am in submit')
   }
 }
