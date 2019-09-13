@@ -59,6 +59,7 @@ import {AlertService, UserService} from './_services';
 import {ErrorInterceptor, fakeBackendProvider} from './_helpers';
 import {appRoutes, routing} from './app.routing';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { RedirectionComponentComponent } from './redirection-component/redirection-component.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { CustomerHomeComponent } from './customer-home/customer-home.component';
         // AddEmpComponent,
         SamplebuttonComponent,
         HomeComponent,
-        CustomerHomeComponent
+        CustomerHomeComponent,
+        RedirectionComponentComponent
     ],
     providers: [
         LoginService,
