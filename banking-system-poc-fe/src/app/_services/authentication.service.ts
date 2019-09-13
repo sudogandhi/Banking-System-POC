@@ -32,14 +32,19 @@ export class AuthenticationService {
       (response) => {
         if(response) {
           localStorage.setItem('token',response.token);
-          this.router.navigate(['/customer_home']);
+          this.router.navigate(['/redirect']);
         }
       }
     ));
 
-    this.http.get('http://localhost:8089/');
+    // this.http.get('http://localhost:8089/');
+  }
+
+  redirectToDashBoard() {
+
   }
 }
+
 
 export class AuthenticationBean {
   token: string;
