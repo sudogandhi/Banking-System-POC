@@ -41,14 +41,14 @@ public class BaseEntity implements Serializable {
     private Long version;
 
     @Column(name = "created_at", updatable=false)
-    @JsonIgnore
+ //   @JsonIgnore
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    @JsonIgnore
+//    @JsonIgnore
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @UpdateTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)

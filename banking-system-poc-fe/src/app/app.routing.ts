@@ -5,14 +5,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 
 export const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-
-    // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    // {path: 'transaction', component:AccountTransactionComponent},
+    // { path: '', component: HomeComponent },
+    // { path: 'login', component: LoginComponent },
+    // { path: 'register', component: RegisterComponent },
+    // // otherwise redirect to home
+    // { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

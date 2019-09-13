@@ -27,19 +27,22 @@
             <th>Transaction</th>
         </tr>
     </thead>
-    <tr *ngFor="let item of _detail ">
+    <tr *ngFor="let item of _detail; let i=index; ">
         <td>{{item.accountNo}}</td>
         <td>{{item.accountType}}</td>
         <td>{{item.branch.branchName}}</td>
         <td>
-            <div *ngIf="balance">
+            <div style="visibility: hidden" id="txt{{i}}" >
                 {{item.balance}}
             </div>
-            <div *ngIf="hidebutton">
-                    <button type="button" class="btn btn-primary" (click)=viewBalance()>click here</button>
+            <div style="visibility: visible">
+                    <button type="button" id="btn{{i}}" class="btn btn-primary" name="balanceButton" (click)=viewBalance(i)>click here</button>
             </div>
         </td>
-        <td><button routerLink="/transaction" type="button" class="btn btn-primary" (click)=showtransaction()>click here</button></td>
+        <td>
+            <div style="visibility: hidden">hello</div>
+            <button type="button" class="btn btn-primary" (click)=showtransaction(item) >click here</button>
+        </td>
     </tr>
     </table>
     </div>

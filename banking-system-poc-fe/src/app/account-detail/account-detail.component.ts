@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountDataService} from '../account-data.service'; 
 import { Accdetail } from '../accdetail';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-detail',
@@ -8,34 +9,37 @@ import { Accdetail } from '../accdetail';
   styleUrls: ['./account-detail.component.css']
 })
 export class AccountDetailComponent implements OnInit {
-  constructor(private _service:AccountDataService) { }
+  constructor(private _service:AccountDataService,private router:Router) { }
   value:any;
   header;
-  balance:number
+  balance:boolean
   hidebutton: boolean=true
   public _detail:Accdetail[];
+  item:any
 
   getValue(){
     this.value=this._service.getData();
     this.header=Object.keys(this.value[0]);
+    
   }
 
-  viewBalance()
+  viewBalance(i: number)
   {
-    console.log(this.hidebutton)
-    this.hidebutton = false
-    this.balance=this.value[0].Balance
+    console.log(i);
+    document.getElementById("btn"+i).style.display='none';
+    document.getElementById("txt"+i).style.visibility='visible';
+    this.balance=true;
   }
-  showtransaction()
+  showtransaction(item:any)
   {
-    console.log("showtrabsaction")
-
+    console.log(item);
+    this.router.navigate(['/transaction',item.accountNo])
   }
 
   ngOnInit() {
     this._service.getAccountDetail().subscribe(data=> {this._detail = data; console.log("details of acc",this._detail)})
-    this._service.setData();
-    this.getValue();
+    // this._service.setData();
+    // this.getValue();
   }
 
 }
