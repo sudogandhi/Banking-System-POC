@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AllaccountsService } from '../allaccounts.service';
 import { AllcustomerDETService } from '../allcustomer-det.service';
+import { AllTransactionService } from '../all-transaction.service';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {FormBuilder, FormGroup} from '@angular/forms';
@@ -21,6 +22,10 @@ export class SamplebuttonComponent implements OnInit {
  public showvar4:boolean=false;
  public showvar5:boolean=false;
 
+ public showcustvar1:boolean=false;
+ public showcustvar2:boolean=false;
+ public showcustvar3:boolean=false;
+
  @Input() Valuetoggle:boolean=false;
 public accounts = [];
 public AllCustomers = [];
@@ -28,7 +33,10 @@ public activeaccounts = [];
 public deactiveaccounts = [];
 public blockedaccounts = [];
 public  unblockedaccounts = [];
+public allTransaction = [];
 
+public AllNewCustomers = [];
+public AllApprovedCustomers = [];
  show1(){
   this.showvar1=true;
   this.showvar2=false;
@@ -65,6 +73,24 @@ public  unblockedaccounts = [];
   this.showvar4=false;
   this.showvar5=true;
  }
+ showcust1()
+ {
+   this.showcustvar1=true;
+   this.showcustvar2=false;
+   this.showcustvar3=false;
+ }
+ showcust2()
+ {
+   this.showcustvar1=false;
+   this.showcustvar2=true;
+   this.showcustvar3=false;
+ }
+ showcust3()
+ {
+  this.showcustvar1=false;
+  this.showcustvar2=false;
+  this.showcustvar3=true;
+ }
  
   // toggle() {
   //   this.show = !this.show;
@@ -92,10 +118,12 @@ public  unblockedaccounts = [];
   //   });
 
   // }
-  constructor(private _allaccountservice : AllaccountsService , private _allcustomerservive : AllcustomerDETService,
+  constructor(private _allaccountservice : AllaccountsService , private _allcustomerservice : AllcustomerDETService,
     private _allactivatedservice : AllaccountsService,private _alldeactivatedservice : AllaccountsService,
     private _allunblockedservice : AllaccountsService,
-    private _allblockedservice : AllaccountsService){}
+    private _allblockedservice : AllaccountsService,
+    private _alltransactionservice : AllTransactionService,
+    private _allnewcustomerservice : AllcustomerDETService){}
   
   ngOnInit() {
     //get all acocounts data
@@ -103,8 +131,18 @@ public  unblockedaccounts = [];
     .subscribe(data =>{this.accounts = data;console.log(this.accounts)});
 
     // get all customers data
-    this._allcustomerservive.getAllCustomerData()
+    this._allcustomerservice.getAllCustomerData()
     .subscribe(data =>{this.AllCustomers = data;console.log(this.AllCustomers)});
+
+    //  // get all new customers data
+     this._allnewcustomerservice.getAllNewCustomerData()
+     .subscribe(data =>{this.AllNewCustomers = data;console.log(this.AllNewCustomers)});
+
+     //approved customers
+     this._allnewcustomerservice. getAllApprovedCustomerData()
+     .subscribe(data =>{this.AllApprovedCustomers = data;console.log(this.AllApprovedCustomers)});
+
+    
 
     //get all activated accounts 
     this._allactivatedservice.getAllActivatedData()
@@ -122,11 +160,17 @@ public  unblockedaccounts = [];
      this._allunblockedservice.getAllUnblockedData()
     .subscribe(data =>{this.unblockedaccounts = data;console.log(this.unblockedaccounts)});
 
+    //get All transactions
     
 
 
   }
-
+  
+show6()
+{
+  this._alltransactionservice.getAllTransactions()
+  .subscribe(data =>{this.allTransaction = data;console.log(this.allTransaction);});
+}
   onChange(accountno){
     //call api
     console.log(accountno+'in tss file');
@@ -135,5 +179,14 @@ public  unblockedaccounts = [];
       );
 
   }
+
+getFlag(amount: number) {
+  if(amount>5000) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 }

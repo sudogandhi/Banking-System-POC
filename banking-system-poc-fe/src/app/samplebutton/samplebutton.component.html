@@ -188,7 +188,7 @@
                                         <th>Account Type</th>
                                         <th>Balance</th>
                                         <th>UNBLOCKED Status</th>
-                                    </tr>
+                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let account of unblockedaccounts">
@@ -196,13 +196,8 @@
                                             <td>{{account.accountType}}</td>
                                             <td>{{account.balance}}</td>
                                             <td>{{account.isBlocked}}</td>
+                                           
                                           
-                                             <!-- <td>
-                                                    <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
-                                                     {{toggleBtn.checked}}
-                                                     </mat-button-toggle> 
-                                                     <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
-                                            </td> -->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -211,14 +206,20 @@
                       
                </mat-tab>
                <!--  -->
-                <!-- <mat-tab label="Manage Customers">
-                        <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animals1">All Customers</button>
-                        <mat-menu #animals1="matMenu">
+                 <mat-tab label="Manage Customers">
+                        <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animal">All Customers</button>
+                        <mat-menu #animal="matMenu">
                                 <div class="b">
-                                <button  mat-button (click)=show1()>All Customers List</button>
-                               </div>   
+                                    <button  mat-button (click)=showcust1()>All Customers List</button>
+                               </div>
+                               <div class="b">
+                                    <button  mat-button (click)=showcust2()>New Customers List</button>
+                                </div> 
+                                <div class="b">
+                                    <button  mat-button (click)=showcust3()>APProved Customers List</button>
+                                </div>  
                         </mat-menu>   
-                        <div *ngIf="showvar1" class="b"> 
+                        <div *ngIf="showcustvar1" class="b"> 
                                         <div class="container">
                                                 <h2><b>All Customers</b></h2>
                                                 <table class="table table-striped">
@@ -235,24 +236,111 @@
                                                     <tr *ngFor="let customer of AllCustomers">
                                                             <td>{{customer.firstName}}</td>
                                                             <td>{{customer.lastName}}</td>
-                                                            <td>{{customer.userName}}</td>
+                                                            <td>{{customer.username}}</td>
                                                             <td>{{customer.email}}</td>
-                                                            <td>{{customer.mobile}}</td>
+                                                            <td>{{customer.mobileNo}}</td>
                                                           
-                                                             <td>
-                                                                    <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
-                                                                     {{toggleBtn.checked}}
-                                                                     </mat-button-toggle> 
-                                                                     <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
-                                                            </td> 
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                         </div>
                                 </div> 
+                                <!--  -->
+                                <div *ngIf="showcustvar2" class="b"> 
+                                        <div class="container">
+                                                <h2><b>All New Customers</b></h2>
+                                                <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Firstname</th>
+                                                        <th>Lastname</th>
+                                                        <th>userName</th>
+                                                        <th>Email</th>
+                                                        <th>Mobile Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let customer of AllNewCustomers">
+                                                            <td>{{customer.firstName}}</td>
+                                                            <td>{{customer.lastName}}</td>
+                                                            <td>{{customer.username}}</td>
+                                                            <td>{{customer.email}}</td>
+                                                            <td>{{customer.mobileNo}}</td>
+                                                          
+                                                        
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </div> 
+                                <!--  -->
+                                <!--  -->
+                                <div *ngIf="showcustvar3" class="b"> 
+                                        <div class="container">
+                                                <h2><b>All Approved Customers</b></h2>
+                                                <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Firstname</th>
+                                                        <th>Lastname</th>
+                                                        <th>userName</th>
+                                                        <th>Email</th>
+                                                        <th>Mobile Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let customer of AllApprovedCustomers">
+                                                            <td>{{customer.firstName}}</td>
+                                                            <td>{{customer.lastName}}</td>
+                                                            <td>{{customer.username}}</td>
+                                                            <td>{{customer.email}}</td>
+                                                            <td>{{customer.mobileNo}}</td>
+                                                          
+                                                            
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </div> 
+                                <!--  -->
                                 
                                
-                </mat-tab>   -->
+                </mat-tab>   
+                <!-- All transactions -->
+                <mat-tab label="Transaction Details">
+                    <div class="b">
+                        <button mat-button (click)="show6()">All Transaction</button>
+                   </div>
+                   <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Sender Account Number</td>
+                                <td>Sender Id</td>
+                                <td>Receiver Account Number</td>
+                                <td>Receiver Id</td>
+                                <th>Amount Transfered</th>
+                                <th>Transaction Id</th>
+                            </tr>
+                           
+                        </thead>
+                            <tbody>
+                                    <tr *ngFor='let t of allTransaction'>
+                                        <td>{{t.sender['accountNo']}}</td>
+                                        <td>{{t.sender['id']}}</td>
+                                        <td>{{t.receiver['accountNo']}}</td>
+                                        <td>{{t.receiver['id']}}</td>
+                                        <!-- <td>
+                                            "if": {"{t.amountTransferred}":{"$gte":5000}}
+                                                    {{t.amountTransferred},{'Flag'}}
+                                            "else":{{t.amountTransferred}}
+                                        </td> -->
+                                        <td>{{t.amountTransferred}}</td>
+                                        <td>{{t.id}}</td>
+                                    </tr>
+                            </tbody>
+                       
+                   </table>
+                </mat-tab>
         </mat-tab-group>
          
 </body>
