@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.min(6)]],
       email : ['',Validators.required],
@@ -46,10 +46,11 @@ export class RegisterComponent implements OnInit {
 
     this.loading = true;
 
+    // console.log(this.registerForm.value);
     this.userService.register(this.registerForm.value)
       .subscribe(
         data => {
-          console.log("data : "+data);
+          // console.log("data : "+data);
           this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);
         },
