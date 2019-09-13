@@ -2,6 +2,7 @@ package com.dbs.banking.poc.bankingdemo.controller;
 
 import com.dbs.banking.poc.bankingdemo.co.AccountCO;
 import com.dbs.banking.poc.bankingdemo.co.AccountNumberCO;
+import com.dbs.banking.poc.bankingdemo.co.TransactionCO;
 import com.dbs.banking.poc.bankingdemo.dto.ResponseDTO;
 import com.dbs.banking.poc.bankingdemo.entities.Account;
 import com.dbs.banking.poc.bankingdemo.entities.Customer;
@@ -82,10 +83,10 @@ public class AccountController {
         return accountService.lastTenTransactions(accountNumberCO);
     }
 
-//    @PostMapping(value="/transactionBetweenDates")
-//    public List<Transaction> transactionBetweenDates(@RequestBody @Valid AccountNumberCO accountNumberCO){
-//        return accountService.transactionBetweenDates(accountNumberCO);
-//    }
+    @PostMapping(value="/transactionBetweenDates")
+    public List<Transaction> transactionBetweenDates(@RequestBody @Valid TransactionCO transactionCO){
+        return accountService.transactionBetweenDates(transactionCO);
+    }
 
 
 }
