@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {RequestAccountService} from './request-account.service';
 
 @Component({
   selector: 'app-request-account',
@@ -14,9 +15,9 @@ export class RequestAccountComponent implements OnInit {
       branchName: new FormControl('',[Validators.required])
     });
   branchInfo: any[];
-  constructor() {
+  constructor(private _service:RequestAccountService) {
   }
-
+  branchData: any = [];
   ngOnInit() {
 
     this.branchInfo = [
@@ -27,11 +28,25 @@ export class RequestAccountComponent implements OnInit {
         {branchName:'Madhapur', ifscCode:'DBS0005', id:127},
         {branchName:'Secunderabad', ifscCode:'DBS0006', id:128}
       ];
+
+    this._service.getBranches().subscribe(data=>{
+      this.branchData=data;
+      // console.log(data);
+    });
+    // console.log(this.branchData);
   }
   onSubmit()
   {
+
     console.log("I am in submit");
+    console.log(this.requestAccount.get('accountType').value+" "+this.requestAccount.get('branchName').value);
+    let requestAccountInfo  = {
+      accountType: this.requestAccount.get('accountType').value,
+      branchId: this.requestAccount.get('branchName').value
+    };
+    this._service.createAccount(requestAccountInfo).subscribe(data=>console.log(data));
     document.getElementById('message').style.display = 'block';
   }
+
 
 }
