@@ -37,10 +37,10 @@ public class AdminService {
     @Autowired
     AccountPagenationRepository accountPagenationRepository;
 
-    public String fetchCustomers(String customerStatus, Integer page) {
+    public List<Customer> fetchCustomers(String customerStatus, Integer page) {
         List<Customer> customerList = null;
         Page<Customer> customerPage = null;
-        PageRequest pageRequest = new PageRequest(page,5,new Sort(Sort.Direction.ASC,"id"));
+        PageRequest pageRequest = new PageRequest(page,100,new Sort(Sort.Direction.ASC,"id"));
         if("ALL".equals(customerStatus)) {
             customerPage= customerRepository.findAll(pageRequest);
         }
@@ -50,7 +50,7 @@ public class AdminService {
         if(customerPage.hasContent()) {
             customerList = customerPage.getContent();
         }
-        return this.getCustomerDTO(customerList).toString();
+        return customerList;
     }
 
     public List<CustomerDTO> getCustomerDTO(List<Customer> customerList) {
