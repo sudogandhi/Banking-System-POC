@@ -39,14 +39,13 @@ public class AdminService {
 
     public String fetchCustomers(String customerStatus, Integer page) {
         List<Customer> customerList = null;
-        Page<Customer> customerPage;
+        Page<Customer> customerPage = null;
         PageRequest pageRequest = new PageRequest(page,5,new Sort(Sort.Direction.ASC,"id"));
         if("ALL".equals(customerStatus)) {
             customerPage= customerRepository.findAll(pageRequest);
         }
         else {
-            customerPage = customerRepository.findByCustomerStatus(CustomerStatus.valueOf(customerStatus),
-                    pageRequest);
+//            customerPage = customerRepository.findByCustomerStatus(CustomerStatus.valueOf(customerStatus));
         }
         if(customerPage.hasContent()) {
             customerList = customerPage.getContent();
@@ -105,5 +104,14 @@ public class AdminService {
             accountList = accountPage.getContent();
         }
         return accountList;
+    }
+
+    public List<Customer> fetchCustomerDetails(String customerStatus) {
+        if("ALL".equals(customerStatus)) {
+             return customerRepository.findAll();
+        }
+        else {
+            return customerRepository.findByCustomerStatus(CustomerStatus.valueOf(customerStatus));
+        }
     }
 }

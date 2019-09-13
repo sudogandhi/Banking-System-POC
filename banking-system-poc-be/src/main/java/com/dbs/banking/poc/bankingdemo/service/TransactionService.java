@@ -73,7 +73,7 @@ public class TransactionService{
     }
 
     private void haveSufficientBalance(Account senderAccount, Double amount) throws InSufficientBalanceException {
-        if(senderAccount.getBalance() - amount < 0) {
+        if(senderAccount.getBalance() - amount < 5000) {
             throw new InSufficientBalanceException("Insufficient Balance");
         }
     }

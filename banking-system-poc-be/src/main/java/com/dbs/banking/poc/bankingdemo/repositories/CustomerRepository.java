@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Optional<Customer> findByEmail(String email);
 
-    Page<Customer> findByCustomerStatus(CustomerStatus customerStatus,Pageable pageable);
+    List<Customer> findByCustomerStatus(CustomerStatus customerStatus);
 
     Page<Customer> findAll(Pageable pageable);
 
