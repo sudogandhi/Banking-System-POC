@@ -18,15 +18,22 @@
     <div class="padding1">
     <h2>Account Details</h2>
     <table id="summary" >
-        <th *ngFor="let item of header" >
-        <tr>{{item}}</tr>
-    </th>
-    <tr *ngFor="let item of value ">
-        <td>{{item.AccountNo}}</td>
-        <td>{{item.Branch}}</td>
+    <thead>
+        <tr>
+            <th>Account No</th>
+            <th>Account Type</th>
+            <th>Branch</th>
+            <th>Balance</th>
+            <th>Transaction</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let item of _detail ">
+        <td>{{item.accountNo}}</td>
+        <td>{{item.accountType}}</td>
+        <td>{{item.branch.branchName}}</td>
         <td>
             <div *ngIf="balance">
-                {{balance}}
+                {{item.balance}}
             </div>
             <div *ngIf="hidebutton">
                     <button type="button" class="btn btn-primary" (click)=viewBalance()>click here</button>
