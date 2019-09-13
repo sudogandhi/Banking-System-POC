@@ -66,7 +66,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 1, currentPage: p };">
+        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 5, currentPage: p };">
           <td> {{t.createdAt}}</td>
           <td> {{t.id}} </td>
           <td > {{t.senderOldBalance}}</td>

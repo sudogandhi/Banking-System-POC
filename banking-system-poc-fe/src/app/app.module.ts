@@ -60,6 +60,7 @@ import {ErrorInterceptor, fakeBackendProvider} from './_helpers';
 import {appRoutes, routing} from './app.routing';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { RedirectionComponentComponent } from './redirection-component/redirection-component.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { RedirectionComponentComponent } from './redirection-component/redirecti
         SamplebuttonComponent,
         HomeComponent,
         CustomerHomeComponent,
-        RedirectionComponentComponent
+        RedirectionComponentComponent,
+        ForgotPasswordComponent
     ],
     providers: [
         LoginService,

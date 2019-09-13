@@ -27,7 +27,7 @@ const routes :Routes =[
   { path:'generate_statement',component: GenerateStatementComponent},
   { path:'money_transfer',component:MoneyTransferComponent},
   { path:'request_account',component: RequestAccountComponent},
-  { path:'home',component:HomeComponent},
+  { path:'',component:HomeComponent},
   { path:'login_register',component:LoginRegistrationPageComponent},
   { path:'login',component:LoginComponent},
   { path:'register',component:RegisterComponent},
