@@ -1,7 +1,7 @@
 export class CustomerDET {
     firstName:string;
     lastName:string;
-    userName:string;
+    username:string;
     email:string;
-    mobile:number;
+    mobileNo:number;
 }
