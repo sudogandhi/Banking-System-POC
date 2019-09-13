@@ -15,10 +15,12 @@ import { RequestAccountComponent } from './request-account/request-account.compo
 import {CustomerHomeComponent} from './customer-home/customer-home.component';
 import { SamplebuttonComponent } from './samplebutton/samplebutton.component';
 import { RedirectionComponentComponent } from './redirection-component/redirection-component.component';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
 // import { appRoutes } from './app.routing';
 
 const routes :Routes =[
 
+  {path: 'transaction/:id', component:AccountTransactionComponent},
   { path:'dashboard',component:DashboardComponent},
   { path:'edit_profile',component:EditProfileComponent},
   { path:'account_details',component: AccountDetailComponent},
