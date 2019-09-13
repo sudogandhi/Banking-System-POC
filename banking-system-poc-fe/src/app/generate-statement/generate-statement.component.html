@@ -60,18 +60,18 @@
         <tr>
           <th scope="col">Txn Date</th>
           <th scope="col">Txn ID</th>
-          <th scope="col">Withdraw</th>
-          <th scope="col">Deposit</th>
-          <th scope="col">Balance</th>
+          <th scope="col">Sender Old Balance</th>
+          <th scope="col">Sender New Balance</th>
+          <th scope="col">Receiver Account No</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 3, currentPage: p };">
-          <td> {{t.txnDate}}</td>
-          <td> {{t.txnID}} </td>
-          <td> {{t.withdrawal}}</td>
-          <td>{{t.deposit}}</td>
-          <td>{{t.balance}}</td>
+        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 1, currentPage: p };">
+          <td> {{t.createdAt}}</td>
+          <td> {{t.id}} </td>
+          <td > {{t.senderOldBalance}}</td>
+          <td>{{t.senderNewBalance}}</td>
+          <td>{{t.receiver['accountNo']}}</td>
         </tr>
       </tbody>
     </table>

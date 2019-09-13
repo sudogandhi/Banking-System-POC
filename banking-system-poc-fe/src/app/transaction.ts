@@ -1,7 +1,16 @@
+/*class Sender
+{
+  senderOldBalance: string;
+  senderNewBalance: string;
+}
+ class ReceiverAccount
+{
+  accountNo: number;
+}*/
 export class Transaction {
-  txnDate: string;
-  txnID: string;
-  withdrawal: number;
-  deposit: number;
-  balance: number;
+  createdAt: string;
+  id: string;
+  receiver: string;
+  senderOldBalance: number;
+  senderNewBalance: number;
 }
