@@ -20,8 +20,8 @@ public class AdminController {
     @GetMapping(value = "/listCustomers/{page}",produces =MediaType.APPLICATION_JSON_VALUE)
     public String fetchCustomers(@RequestHeader("Status") String customerStatus, @PathVariable("page")Integer page) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println(objectMapper.writeValueAsString(adminService.fetchCustomers(customerStatus, page)));
-        return objectMapper.writeValueAsString(adminService.fetchCustomers(customerStatus, page));
+//        System.out.println(objectMapper.writeValueAsString(adminService.fetchCustomers(customerStatus, page)));
+        return adminService.fetchCustomers(customerStatus, page);
     }
 
     @GetMapping(value = "/listAccounts/{page}",produces =MediaType.APPLICATION_JSON_VALUE)

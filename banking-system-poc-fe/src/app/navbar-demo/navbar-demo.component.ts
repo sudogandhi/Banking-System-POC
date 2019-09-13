@@ -19,8 +19,8 @@ export class NavbarDemoComponent implements OnInit {
 
   logout()
   {
-    localStorage.removeItem("generated_token");
-    console.log(localStorage.getItem("generated_token"));
+    localStorage.removeItem("token");
+    //console.log(localStorage.getItem("token"));
     this.router.navigate(['/home']);
 
   }

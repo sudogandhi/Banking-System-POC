@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     let token = localStorage.getItem('token');
 
     if(token) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/customer_home']);
     }
     // this.onFormSubmit();
   }

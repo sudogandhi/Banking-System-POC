@@ -25,4 +25,5 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     @Query("SELECT MAX(a.accountNo)+1 from Account a")
     Long nextAccountNo();
     Account findByAccountNo(Long accountNo);
+
 }
