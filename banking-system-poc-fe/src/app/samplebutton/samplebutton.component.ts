@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AllaccountsService } from '../allaccounts.service';
 import { AllcustomerDETService } from '../allcustomer-det.service';
 import { AllTransactionService } from '../all-transaction.service';
-
+import { RouterModule, Routes, Router } from '@angular/router';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import {FormBuilder, FormGroup} from '@angular/forms';
 
@@ -102,7 +102,11 @@ public AllApprovedCustomers = [];
   // }
   logout()
   {
-    console.log("Hello")
+    console.log(localStorage.getItem("token"));
+    localStorage.removeItem("token");
+    console.log("logout : token check : "+localStorage.getItem("token"));
+    this.router.navigate(['/']);
+    
   }
   //  onChange(name:string)
   // {
@@ -123,7 +127,8 @@ public AllApprovedCustomers = [];
     private _allunblockedservice : AllaccountsService,
     private _allblockedservice : AllaccountsService,
     private _alltransactionservice : AllTransactionService,
-    private _allnewcustomerservice : AllcustomerDETService){}
+    private _allnewcustomerservice : AllcustomerDETService,
+    private router : Router){}
   
   ngOnInit() {
     //get all acocounts data

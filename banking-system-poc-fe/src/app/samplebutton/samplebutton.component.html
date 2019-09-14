@@ -18,7 +18,7 @@
         <mat-tab-group>
                 <mat-tab label="Home">
                     <div style="text-align:right; width:100%; padding:0;">
-                        <button type="button" class="btn btn-primary" value="Click" (click) ="logout()">
+                        <button type="button" class="btn btn-primary"  (click)="logout()">
                                 LOGOUT
                          </button>       
                     </div>
@@ -145,7 +145,7 @@
                                         </tbody>
                                     </table>
                             </div>
-                    </div> -->
+                    </div> 
                         <!--  All Blocked Accounts-->
                         <div *ngIf="showvar4" class="b"> 
                             <div class="container">
@@ -166,12 +166,6 @@
                                                 <td>{{account.balance}}</td>
                                                 <td>{{account.isBlocked}}</td>
                                               
-                                                 <!-- <td>
-                                                        <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
-                                                         {{toggleBtn.checked}}
-                                                         </mat-button-toggle> 
-                                                         <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
-                                                </td> -->
                                         </tr>
                                         </tbody>
                                     </table>
@@ -216,7 +210,7 @@
                                     <button  mat-button (click)=showcust2()>New Customers List</button>
                                 </div> 
                                 <div class="b">
-                                    <button  mat-button (click)=showcust3()>APProved Customers List</button>
+                                    <button  mat-button (click)=showcust3()>Approved Customers List</button>
                                 </div>  
                         </mat-menu>   
                         <div *ngIf="showcustvar1" class="b"> 
@@ -302,7 +296,7 @@
                                                 </table>
                                         </div>
                                 </div> 
-                                <!--  -->
+                               
                                 
                                
                 </mat-tab>   
