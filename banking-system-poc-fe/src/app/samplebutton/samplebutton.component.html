@@ -8,53 +8,53 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
-    
+
 
 </style>
-     
+
 </head>
 <body>
-    
+
         <mat-tab-group>
                 <mat-tab label="Home">
                     <div style="text-align:right; width:100%; padding:0;">
                         <button type="button" class="btn btn-primary"  (click)="logout()">
                                 LOGOUT
-                         </button>       
+                         </button>
                     </div>
                     <br>
                     <br>
                             <div class="container">
-                                        <div class="centered a"><h1 style="color:white;">DBS BANK</h1> 
-                                        <h1 style="color:white;">WELCOME TO ADMIN PANEL</h1></div>
-                                        <img src="assets/Bank.jpg" width="1200px" height="500px">
+                              <h1><b>DBS BANK</b></h1>
+                              <h1><b>WELCOME TO ADMIN PANEL</b></h1>
+<!--                                        <img src="assets/Bank.jpg" width="1200px" height="500px">-->
                             </div>
-                            
+
                 </mat-tab>
                 <mat-tab label="Manage Accounts">
                         <button class="btn btn-primary" mat-button [matMenuTriggerFor]="animals">All Accounts List</button>
                         <mat-menu #animals="matMenu">
                                 <div class="b">
                                     <button mat-button (click)="show1()">All Accounts</button>
-                               </div> 
+                               </div>
                                <div class="b">
                                 <button mat-button (click)="show2()">Activated Accounts</button>
-                            </div> 
+                            </div>
                                <div class="b">
                                     <button mat-button (click)="show3()">New Accounts</button>
                                </div>
                                <div class="b">
                                 <button mat-button (click)="show4()">BLOCKED Accounts</button>
-                           </div> 
+                           </div>
                            <div class="b">
                             <button mat-button (click)="show5()">UNBLOCKED Accounts</button>
-                       </div> 
-                               
-                                
-                              
-                        </mat-menu>          
+                       </div>
+
+
+
+                        </mat-menu>
                         <!--  ALL accounts -->
-                         <div *ngIf="showvar1" class="b"> 
+                         <div *ngIf="showvar1" class="b">
                                 <div class="container">
                                     <h2><b>All Accounts List</b></h2>
                                         <table class="table table-striped">
@@ -74,15 +74,15 @@
                                                     <td>{{account.balance}}</td>
                                                     <td>{{account.isBlocked}}</td>
                                                     <td>{{account.isActivated}}</td>
-                                                   
+
                                             </tr>
                                             </tbody>
                                         </table>
                                 </div>
-                        </div> 
+                        </div>
 
                         <!-- All Activated Accounts -->
-                        <div *ngIf="showvar2" class="b"> 
+                        <div *ngIf="showvar2" class="b">
                             <div class="container">
                                 <h2><b>All Activated Accounts</b></h2>
                                     <table class="table table-striped">
@@ -100,11 +100,11 @@
                                                 <td>{{account.accountType}}</td>
                                                 <td>{{account.balance}}</td>
                                                 <td>{{account.isActivated}}</td>
-                                              
+
                                                 <!-- <td>
-                                                        <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
+                                                        <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}
                                                          {{toggleBtn.checked}}
-                                                         </mat-button-toggle> 
+                                                         </mat-button-toggle>
                                                          <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
                                                 </td>  -->
                                         </tr>
@@ -112,9 +112,9 @@
                                     </table>
                             </div>
                     </div>
-           
+
                         <!-- All deactivated accounts -->
-                        <div *ngIf="showvar3" class="b"> 
+                        <div *ngIf="showvar3" class="b">
                             <div class="container">
                                 <h2><b>All Deactivated Accounts</b></h2>
                                     <table class="table table-striped">
@@ -132,22 +132,22 @@
                                                 <td>{{account.accountType}}</td>
                                                 <td>{{account.balance}}</td>
                                                 <td>{{account.isActivated}}
-                                                
+
                                                     <button class="btn btn-primary" (click)="onChange(account.accountNo)">Activate</button>
-                                                </td>  
+                                                </td>
                                                  <!-- <td>
-                                                        <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}  
+                                                        <mat-button-toggle #toggleBtn checked (change)="onChange(data.name)" [ngModel]="Valuetoggle">{{Valuetoggle}}
                                                          {{toggleBtn.checked}}
-                                                         </mat-button-toggle> 
+                                                         </mat-button-toggle>
                                                          <button [(ngModel)]="data.status" (click)="onChange(data.name)">{{data.status}}</button>
                                                 </td> -->
                                         </tr>
                                         </tbody>
                                     </table>
                             </div>
-                    </div> 
+                    </div>
                         <!--  All Blocked Accounts-->
-                        <div *ngIf="showvar4" class="b"> 
+                        <div *ngIf="showvar4" class="b">
                             <div class="container">
                                 <h2><b>All BLOCKED Accounts</b></h2>
                                     <table class="table table-striped">
@@ -165,14 +165,14 @@
                                                 <td>{{account.accountType}}</td>
                                                 <td>{{account.balance}}</td>
                                                 <td>{{account.isBlocked}}</td>
-                                              
+
                                         </tr>
                                         </tbody>
                                     </table>
                             </div>
                     </div>
                        <!-- All unblocked Accounts -->
-                       <div *ngIf="showvar5" class="b"> 
+                       <div *ngIf="showvar5" class="b">
                         <div class="container">
                             <h2><b>All UNBLOCKED Accounts</b></h2>
                                 <table class="table table-striped">
@@ -190,14 +190,14 @@
                                             <td>{{account.accountType}}</td>
                                             <td>{{account.balance}}</td>
                                             <td>{{account.isBlocked}}</td>
-                                           
-                                          
+
+
                                     </tr>
                                     </tbody>
                                 </table>
                         </div>
                 </div>
-                      
+
                </mat-tab>
                <!--  -->
                  <mat-tab label="Manage Customers">
@@ -208,12 +208,12 @@
                                </div>
                                <div class="b">
                                     <button  mat-button (click)=showcust2()>New Customers List</button>
-                                </div> 
+                                </div>
                                 <div class="b">
                                     <button  mat-button (click)=showcust3()>Approved Customers List</button>
-                                </div>  
-                        </mat-menu>   
-                        <div *ngIf="showcustvar1" class="b"> 
+                                </div>
+                        </mat-menu>
+                        <div *ngIf="showcustvar1" class="b">
                                         <div class="container">
                                                 <h2><b>All Customers</b></h2>
                                                 <table class="table table-striped">
@@ -233,14 +233,14 @@
                                                             <td>{{customer.username}}</td>
                                                             <td>{{customer.email}}</td>
                                                             <td>{{customer.mobileNo}}</td>
-                                                          
+
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                         </div>
-                                </div> 
+                                </div>
                                 <!--  -->
-                                <div *ngIf="showcustvar2" class="b"> 
+                                <div *ngIf="showcustvar2" class="b">
                                         <div class="container">
                                                 <h2><b>All New Customers</b></h2>
                                                 <table class="table table-striped">
@@ -260,16 +260,16 @@
                                                             <td>{{customer.username}}</td>
                                                             <td>{{customer.email}}</td>
                                                             <td>{{customer.mobileNo}}</td>
-                                                          
-                                                        
+
+
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                         </div>
-                                </div> 
+                                </div>
                                 <!--  -->
                                 <!--  -->
-                                <div *ngIf="showcustvar3" class="b"> 
+                                <div *ngIf="showcustvar3" class="b">
                                         <div class="container">
                                                 <h2><b>All Approved Customers</b></h2>
                                                 <table class="table table-striped">
@@ -289,17 +289,17 @@
                                                             <td>{{customer.username}}</td>
                                                             <td>{{customer.email}}</td>
                                                             <td>{{customer.mobileNo}}</td>
-                                                          
-                                                            
+
+
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                         </div>
-                                </div> 
-                               
-                                
-                               
-                </mat-tab>   
+                                </div>
+
+
+
+                </mat-tab>
                 <!-- All transactions -->
                 <mat-tab label="Transaction Details">
                     <div class="b">
@@ -315,7 +315,7 @@
                                 <th>Amount Transfered</th>
                                 <th>Transaction Id</th>
                             </tr>
-                           
+
                         </thead>
                             <tbody>
                                     <tr *ngFor='let t of allTransaction'>
@@ -332,11 +332,11 @@
                                         <td>{{t.id}}</td>
                                     </tr>
                             </tbody>
-                       
+
                    </table>
                 </mat-tab>
         </mat-tab-group>
-         
+
 </body>
 </html>
 

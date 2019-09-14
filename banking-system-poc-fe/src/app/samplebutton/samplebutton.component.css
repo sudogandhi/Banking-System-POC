@@ -17,7 +17,7 @@ li {
 span{
   padding-right: 1rem;
 }
-.clicked 
+.clicked
 {
 color:red;
 }
@@ -37,7 +37,7 @@ table tr:nth-child(even) {
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-body { 
+body {
   font-family: Roboto, Arial, sans-serif;
   margin: 0;
 }
@@ -65,10 +65,7 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-h1 {
-  text-shadow: 3px 2px black;
- 
-}
+
 .mat-tab-label{
   background-color: red ;
   opacity: 1 !important;
