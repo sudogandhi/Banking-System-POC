@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountDataService} from '../account-data.service'; 
 import { Accdetail } from '../accdetail';
+import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-account-detail',
@@ -8,7 +9,7 @@ import { Accdetail } from '../accdetail';
   styleUrls: ['./account-detail.component.css']
 })
 export class AccountDetailComponent implements OnInit {
-  constructor(private _service:AccountDataService) { }
+  constructor(private _service:AccountDataService, private authenticationService: AuthenticationService) { }
   value:any;
   header;
   balance:number
@@ -33,6 +34,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authenticationService.redirectToHomePage();
     this._service.getAccountDetail().subscribe(data=> {this._detail = data; console.log("details of acc",this._detail)})
     this._service.setData();
     this.getValue();

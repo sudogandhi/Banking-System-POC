@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {profileData} from './profileData';
 import {EditProfileService} from './edit-profile.service';
+import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-edit-profile',
@@ -34,11 +35,12 @@ export class EditProfileComponent implements OnInit {
   }
 
 
-  constructor(private _service:EditProfileService) {
+  constructor(private _service:EditProfileService,private authenticationService: AuthenticationService) {
     //console.log(document.getElementById('fname').nodeValue);
   }
 
   ngOnInit() {
+    this.authenticationService.redirectToHomePage();
     this._service.getData().subscribe(data=>this.fetchedData=data);
   }
   onSubmit()

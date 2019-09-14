@@ -43,6 +43,15 @@ export class AuthenticationService {
   redirectToDashBoard() {
 
   }
+
+  redirectToHomePage() {
+    let token = localStorage.getItem('token');
+    if(!token) {
+      console.log(token);
+      this.router.navigate(['/homepage']);
+      this.logout();
+    }
+  }
 }
 
 

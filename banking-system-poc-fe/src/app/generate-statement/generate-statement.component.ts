@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {Transaction} from '../transaction';
 import {GenerateStatementService} from './generate-statement.service';
+import { AuthenticationService } from '../_services';
 
 export interface AccountType {
   value: string;
@@ -34,10 +35,12 @@ export class GenerateStatementComponent implements OnInit
   action: string='';
 
 
-  constructor(private _service: GenerateStatementService) {
+  constructor(private _service: GenerateStatementService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
+
+    this.authenticationService.redirectToHomePage();
           this._service.getAccountNumbers().subscribe(data=>{
             this.accounts=data;
             //console.log("all user account"+data);
