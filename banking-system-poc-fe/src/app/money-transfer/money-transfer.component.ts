@@ -64,7 +64,7 @@ export class MoneyTransferComponent implements OnInit {
             if(error==='OK')
             {
               this.message=this.message+=" Transaction Successfull!!";
-              document.getElementById('message').style.display
+              document.getElementById('message').style.display='block';
             }
             else
             {
