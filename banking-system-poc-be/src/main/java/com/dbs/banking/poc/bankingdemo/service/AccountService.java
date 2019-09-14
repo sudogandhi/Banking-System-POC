@@ -121,8 +121,10 @@ public class AccountService {
 //        LocalDateTime toDate= (LocalDateTime) formatter.parse(transactionCO.getToDate());
 //        System.out.println(fromDate + "   -   "+toDate);
 //        List<Transaction> result=transactionRepository.transactionBetweenDates(fromDate,toDate);
-        List<Transaction> result=transactionRepository.transactionBetweenDates(transactionCO.getFromDate(),transactionCO.getFromDate());
+//        for(Transaction r:result){
+//            System.out.println(r.getCreatedAt());
+//        }
+        List<Transaction> result=transactionRepository.userTransactions(account);
         return result;
     }
-
 }

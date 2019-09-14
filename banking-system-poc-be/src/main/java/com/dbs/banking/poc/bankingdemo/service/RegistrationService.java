@@ -89,7 +89,7 @@ public class RegistrationService {
                 "Click on the above link to activate your account";
         emailService.sendSimpleMessage(customer.getEmail(),"Activate link for DBS Account",activateUrlMessage);
         tokenRepository.save(token);
-        return "User created successfully.\nPlease check your email for account verification.";
+        return "User created successfully.Please check your email for account verification.";
     }
 
     public boolean usernameExists(String username) {
@@ -144,7 +144,7 @@ public class RegistrationService {
             loginRepository.save(login);
             String emailBody = "Hi "+customer.getFirstName() + " " + customer.getLastName() + "" +
                     " your new password is "+tokenString+"\n" +
-                    "Please change the password after logging in with this password.";
+                    "Please use this as password .";
             String emailSubject = "Hi "+login.getUsername()+" reset password.";
             emailService.sendSimpleMessage(customer.getEmail(),emailSubject,emailBody);
         }

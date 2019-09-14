@@ -84,10 +84,8 @@ public class AccountController {
         return accountService.lastTenTransactions(accountNumberCO);
     }
 
-    @PostMapping(value="/transactionBetweenDates")
-    public List<Transaction> transactionBetweenDates(@RequestBody @Valid TransactionCO transactionCO) throws ParseException {
-        return accountService.transactionBetweenDates(transactionCO);
-    }
-
-
+//    @PostMapping(value="/transactionBetweenDates")
+//    public List<Transaction> transactionBetweenDates(@RequestBody @Valid TransactionCO transactionCO) throws ParseException {
+//        return accountService.transactionBetweenDates(transactionCO);
+//    }
 }
