@@ -62,6 +62,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  forgotPassword()
+  {
+    this.router.navigate(['/change_password']);
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -74,16 +79,7 @@ export class LoginComponent implements OnInit {
 
     console.log(this.authenticationService.executeAuthenticationService(this.f.username.value, this.f.password.value));
 
-    // this.authenticationService.login(this.f.username.value, this.f.password.value)
-    //     .pipe(first())
-    //     .subscribe(
-    //         data => {
-    //             this.router.navigate([this.returnUrl]);
-    //         },
-    //         error => {
-    //             this.alertService.error(error);
-    //             this.loading = false;
-    //         });
+
   }
 
 }

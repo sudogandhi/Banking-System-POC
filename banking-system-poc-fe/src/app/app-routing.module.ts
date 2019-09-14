@@ -15,23 +15,28 @@ import { RequestAccountComponent } from './request-account/request-account.compo
 import {CustomerHomeComponent} from './customer-home/customer-home.component';
 import { SamplebuttonComponent } from './samplebutton/samplebutton.component';
 import { RedirectionComponentComponent } from './redirection-component/redirection-component.component';
+import { AccountTransactionComponent } from './account-transaction/account-transaction.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 // import { appRoutes } from './app.routing';
 
 const routes :Routes =[
 
+  {path: 'transaction/:id', component:AccountTransactionComponent},
+  { path: 'change_password',component:ForgotPasswordComponent},
   { path:'dashboard',component:DashboardComponent},
   { path:'edit_profile',component:EditProfileComponent},
   { path:'account_details',component: AccountDetailComponent},
   { path:'generate_statement',component: GenerateStatementComponent},
   { path:'money_transfer',component:MoneyTransferComponent},
   { path:'request_account',component: RequestAccountComponent},
-  { path:'home',component:HomeComponent},
+  { path:'',component:HomeComponent},
   { path:'login_register',component:LoginRegistrationPageComponent},
   { path:'login',component:LoginComponent},
   { path:'register',component:RegisterComponent},
   { path: 'customer_home', component: CustomerHomeComponent},
   { path: 'admin',component: SamplebuttonComponent},
   { path: 'redirect', component: RedirectionComponentComponent}
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -19,7 +19,7 @@ public class AdminController {
     AdminService adminService;
 
     @GetMapping(value = "/listCustomers/{page}",produces =MediaType.APPLICATION_JSON_VALUE)
-    public String fetchCustomers(@RequestHeader("Status") String customerStatus, @PathVariable("page")Integer page) throws IOException {
+    public List<Customer> fetchCustomers(@RequestHeader("Status") String customerStatus, @PathVariable("page")Integer page) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return adminService.fetchCustomers(customerStatus, page);
     }

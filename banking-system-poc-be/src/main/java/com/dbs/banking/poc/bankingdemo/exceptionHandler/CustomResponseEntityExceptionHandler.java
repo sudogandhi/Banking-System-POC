@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-//@ControllerAdvice
+@ControllerAdvice
 @RestController
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public final ResponseDTO handleUserAlreadyExistsException(UserAlreadyExistsException ex, WebRequest request) {
+        return new ResponseDTO(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UserNotExistsException.class)
+    public final ResponseDTO handleUserNotExistsException(UserNotExistsException ex, WebRequest request) {
         return new ResponseDTO(ex.getMessage(), HttpStatus.CONFLICT);
     }
 

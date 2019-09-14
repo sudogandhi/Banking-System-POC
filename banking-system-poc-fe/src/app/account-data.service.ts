@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { headersToString } from 'selenium-webdriver/http';
 import { Accdetail } from './accdetail';
+import {Acctransaction} from './acctransaction';
+// import { Acctransaction } from './acctransaction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountDataService {
-  baseUrl="http://localhost:8089/getAllAccounts";
+  baseUrl="http://localhost:8089";
 
-  constructor(private _http:HttpClient){ 
+  constructor(private _http:HttpClient){
+
   }
 
   public getAccountDetail():Observable<Accdetail[]>{
-    return this._http.get<Accdetail[]>(this.baseUrl);
+    return this._http.get<Accdetail[]>(this.baseUrl+'/getAllAccounts');
+  }
+
+  public getTransactionDetail(body):Observable<Acctransaction[]>{
+    console.log("body",body)
+    return this._http.post<Acctransaction[]>(this.baseUrl+'/transactions',body,{headers:{'Content-Type':'application/json'}});
   }
 
   arr=[{
@@ -64,12 +71,12 @@ export class AccountDataService {
   }
   getData()
   {
-    return this.userdetail; 
+    return this.userdetail;
   }
-  setTransaction(){
-    this.transactiondetail=this.arr[0].transactions;
-    console.log(this.transactiondetail);
-  }
+  // setTransaction(){
+  //   this.transactiondetail=this.arr[0].transactions;
+  //   console.log(this.transactiondetail);
+  // }
   getTransaction()
   {
     return this.transactiondetail;

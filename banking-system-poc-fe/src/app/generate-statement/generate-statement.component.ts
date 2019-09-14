@@ -23,9 +23,6 @@ export class GenerateStatementComponent implements OnInit
       statementForm=new FormGroup({
         accountControl: new FormControl('', [Validators.required]),
         periodControl: new FormControl('', [Validators.required]),
-        mon: new FormControl('',[Validators.required]),
-      toDate:new FormControl('', [Validators.required]),
-      fromDate:new FormControl('', [Validators.required,])
     });
   accountNumbers: AccountType[]=[];
   accounts: any=[];
@@ -46,14 +43,9 @@ export class GenerateStatementComponent implements OnInit
             //console.log("all user account"+data);
             for (let i in this.accounts)
             {
-              //console.log(this.accounts[i].accountNo);
               this.accountNumbers.push({value:(""+this.accounts[i].accountNo),viewValue:(""+this.accounts[i].accountNo)})
             }
           });
-
-
-          this.months = ['January','February','March','April','May',
-            'June','July','August','September','October','November','December'];
   }
 
   onFormSubmit()
@@ -68,12 +60,14 @@ export class GenerateStatementComponent implements OnInit
             console.log(this.trans[0].receiver['accountNo']);
           });
       }
-      else if(this.action === 'date range')
+      else if(this.action === 'allTransaction')
       {
-
+          let accountNo = this.statementForm.get('accountControl').value;
+            this._service.getAllTransaction({accountNo:""+accountNo}).subscribe( data=>
+            {
+              this.trans = data;
+              console.log(this.trans[0].receiver['accountNo']);
+            });
       }
-
-      //this._service.getTransaction().subscribe(data=>this.trans = data);
-      //console.log("rachana");
   }
 }

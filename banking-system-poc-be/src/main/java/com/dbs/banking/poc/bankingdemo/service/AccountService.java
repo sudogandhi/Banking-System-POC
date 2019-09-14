@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -107,15 +109,22 @@ public class AccountService {
 
     }
 
-    public List<Transaction> transactionBetweenDates(TransactionCO transactionCO) {
+    public List<Transaction> transactionBetweenDates(TransactionCO transactionCO) throws ParseException {
         Account account=accountRepository.findByAccountNo(transactionCO.getAccountNo());
 //        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
 //        Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime fromDate=LocalDateTime.parse(transactionCO.getFromDate(),formatter);
-        LocalDateTime toDate=LocalDateTime.parse(transactionCO.getToDate(),formatter);
-        List<Transaction> result=transactionRepository.transactionBetweenDates(fromDate,toDate);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String fromDate = format.parse(transactionCO.getFromDate());
+//        String toDate = format.parse(transactionCO.getToDate());
+//        DateTimeFormatter formatrmatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        LocalDateTime fromDate= (LocalDateTime) formatter.parse(transactionCO.getFromDate());
+//        LocalDateTime toDate= (LocalDateTime) formatter.parse(transactionCO.getToDate());
+//        System.out.println(fromDate + "   -   "+toDate);
+//        List<Transaction> result=transactionRepository.transactionBetweenDates(fromDate,toDate);
+//        for(Transaction r:result){
+//            System.out.println(r.getCreatedAt());
+//        }
+        List<Transaction> result=transactionRepository.userTransactions(account);
         return result;
     }
-
 }

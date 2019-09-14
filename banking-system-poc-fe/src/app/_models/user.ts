@@ -1,7 +1,10 @@
 export class User {
-    id: number;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-}   
+    firstname: string;
+    lastname: string;
+    adharCard: string;
+    panCard: string;
+    email: string;
+    mobileNo: number;
+}
