@@ -3,6 +3,8 @@
     <h1>Money Transfer Page</h1>
     <hr>
     <div class="mat-card">
+      <br>
+      <br>
       <div class="container">
       <form [formGroup]="moneyTransfer" (ngSubmit)="onSubmit()" class="example-container">
 
@@ -11,7 +13,6 @@
           <mat-label>Select Account No</mat-label>
           <mat-select formControlName="accountNo" class="form-control"
           [class.is-invalid]="moneyTransfer.get('accountNo').invalid||moneyTransfer.get('accountNo').untouched">
-            <mat-option  value="0" selected="true">----</mat-option>
             <mat-option *ngFor="let acnt of accountNumbers" [value]="acnt.value">{{acnt.viewValue}}</mat-option>
           </mat-select>
           <mat-error *ngIf="moneyTransfer.get('accountNo').invalid">
@@ -36,6 +37,8 @@
         </div>
         <button mat-raised-button color="primary" [disabled]="moneyTransfer.invalid" style="width: 40px">SEND</button>
         <h3 style="display: none" id="message">{{message}}</h3>
+        <br>
+        <br>
       </form>
       </div>
     </div>

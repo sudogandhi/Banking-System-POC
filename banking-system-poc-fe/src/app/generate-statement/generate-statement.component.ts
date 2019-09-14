@@ -65,12 +65,14 @@ export class GenerateStatementComponent implements OnInit
             console.log(this.trans[0].receiver['accountNo']);
           });
       }
-      else if(this.action === 'date range')
+      else if(this.action === 'allTransaction')
       {
-
+          let accountNo = this.statementForm.get('accountControl').value;
+            this._service.getAllTransaction({accountNo:""+accountNo}).subscribe( data=>
+            {
+              this.trans = data;
+              console.log(this.trans[0].receiver['accountNo']);
+            })
       }
-
-      //this._service.getTransaction().subscribe(data=>this.trans = data);
-      //console.log("rachana");
   }
 }

@@ -11,73 +11,49 @@
                 <mat-option *ngFor="let acnt of accountNumbers" [value]="acnt.value"  >{{acnt.viewValue}}</mat-option>
               </mat-select>
             <mat-error *ngIf="statementForm.get('accountControl').invalid">
-              Choose an account Type
+              Choose an account Number
             </mat-error>
-          </mat-form-field>
-
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
 
           <mat-form-field >
             <mat-label>Select Period</mat-label>
             <mat-select formControlName="periodControl"
             [class.is-invalid]="statementForm.get('periodControl').invalid||statementForm.get('periodControl').untouched">
               <mat-option value="tenTransaction">Last 10 Transaction</mat-option>
-              <mat-option value="date range">Date Range</mat-option>
+              <mat-option value="allTransaction">All Transaction</mat-option>
             </mat-select>
             <mat-error *ngIf="statementForm.get('periodControl').invalid">
               Choose Period
             </mat-error>
-          </mat-form-field>
-
-         <div *ngIf="statementForm.get('periodControl').value ==='date range'" >
-          <input matInput [matDatepicker]="picker" placeholder="From Date" formControlName="fromDate"
-          [class.is-invalid]="statementForm.get('fromDate').invalid">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="statementForm.get('fromDate').invalid">
-              Choose Date
-            </mat-error>
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-
-
-          <div *ngIf="statementForm.get('periodControl').value ==='date range'">
-          <input matInput [matDatepicker]="picker2" placeholder="To Date" formControlName="toDate"
-          [class.is-invalid]="statementForm.get('toDate').invalid">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-            <mat-error *ngIf="statementForm.get('toDate').invalid">
-              Choose Date
-            </mat-error>
-          </div>
-    <button mat-raised-button color="primary" [disabled]="statementForm.valid">SUBMIT</button>
-  </form>
-  <br>
-  <br>
-  <div class="row">
-    <table border="2" class="table table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Txn Date</th>
-          <th scope="col">Txn ID</th>
-          <th scope="col">Sender Old Balance</th>
-          <th scope="col">Sender New Balance</th>
-          <th scope="col">Receiver Account No</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let t of trans | paginate: { itemsPerPage: 5, currentPage: p };">
-          <td> {{t.createdAt}}</td>
-          <td> {{t.id}} </td>
-          <td > {{t.senderOldBalance}}</td>
-          <td>{{t.senderNewBalance}}</td>
-          <td>{{t.receiver['accountNo']}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="text-center" id="pagination">
-      <pagination-controls (pageChange)="p = $event" ></pagination-controls>
-    </div>
+          </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+         <button mat-raised-button color="primary" [disabled]="statementForm.invalid">SUBMIT</button>
+      </form>
+      <br>
+      <br>
+      <div class="row">
+        <table border="2" class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Txn Date</th>
+              <th scope="col">Txn ID</th>
+              <th scope="col">Sender Old Balance</th>
+              <th scope="col">Sender New Balance</th>
+              <th scope="col">Receiver Account No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of trans | paginate: { itemsPerPage: 5, currentPage: p };">
+              <td> {{t.createdAt}}</td>
+              <td> {{t.id}} </td>
+              <td > {{t.senderOldBalance}}</td>
+              <td>{{t.senderNewBalance}}</td>
+              <td>{{t.receiver['accountNo']}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center" id="pagination">
+          <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+        </div>
+      </div>
   </div>
-</div>
-</div>
+  </div>
