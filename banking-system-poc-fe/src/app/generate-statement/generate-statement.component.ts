@@ -22,9 +22,6 @@ export class GenerateStatementComponent implements OnInit
       statementForm=new FormGroup({
         accountControl: new FormControl('', [Validators.required]),
         periodControl: new FormControl('', [Validators.required]),
-        mon: new FormControl('',[Validators.required]),
-      toDate:new FormControl('', [Validators.required]),
-      fromDate:new FormControl('', [Validators.required,])
     });
   accountNumbers: AccountType[]=[];
   accounts: any=[];
@@ -43,14 +40,9 @@ export class GenerateStatementComponent implements OnInit
             //console.log("all user account"+data);
             for (let i in this.accounts)
             {
-              //console.log(this.accounts[i].accountNo);
               this.accountNumbers.push({value:(""+this.accounts[i].accountNo),viewValue:(""+this.accounts[i].accountNo)})
             }
           });
-
-
-          this.months = ['January','February','March','April','May',
-            'June','July','August','September','October','November','December'];
   }
 
   onFormSubmit()
@@ -72,7 +64,7 @@ export class GenerateStatementComponent implements OnInit
             {
               this.trans = data;
               console.log(this.trans[0].receiver['accountNo']);
-            })
+            });
       }
   }
 }
